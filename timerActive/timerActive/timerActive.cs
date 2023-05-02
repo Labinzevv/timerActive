@@ -14,7 +14,7 @@ using System.IO;
 namespace timerActive
 {
     public partial class timerActive : Form
-    {  
+    {
         //отслеживает активность приложения по window title
         //[DllImport("user32.dll")]
         //static extern IntPtr GetForegroundWindow();
@@ -56,11 +56,14 @@ namespace timerActive
         }
         private POINT prevPoint;
 
+        //ввод данных
+        public string inputnameProcces;
+        //путь файла
+        string filePath = "3dsmax.txt";
+
         public timerActive()
         {
             InitializeComponent();
-            //отслеживает активное окно
-            timer.Start();
 
             //подписка на закрытие приложения
             FormClosing += new FormClosingEventHandler(timerActive_FormClosing);
@@ -69,15 +72,42 @@ namespace timerActive
         {
             stopwatch = new Stopwatch();
 
-            //возвращает имя процесса
-            //timer1.Start();
-
             //сборос секундомера
             stopwatch.Reset();
 
-
             //загрузка таймера
-            string filePath = "elapsedTicks.txt";
+            //string filePath = "3dsmax.txt";
+            //long savedTicks = 0;
+            //if (File.Exists(filePath))
+            //{
+            //    string savedTimeStr = File.ReadAllText(filePath);
+            //    long.TryParse(savedTimeStr, out savedTicks);
+            //}
+            //long totalTicks = savedTicks + stopwatch.ElapsedTicks;
+            //File.WriteAllText(filePath, totalTicks.ToString());
+            //TimeSpan totalTime = new TimeSpan(totalTicks);
+            //globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+
+            inputProcessName.SelectedIndexChanged += inputProcessName_SelectedIndexChanged;
+        }
+        private void inputProcessName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Вызываем метод для загрузки данных из файла
+            LoadDataFromFile();
+            inputProcessName.Enabled = false;
+        }
+        private void LoadDataFromFile()
+        {
+            // Здесь загружаем данные из файла и выполняем необходимые действия
+            //загрузка таймера
+            if (inputnameProcces == "3dsmax")
+            {
+                filePath = "3dsmax.txt";
+            }
+            if (inputnameProcces == "Photoshop")
+            {
+                filePath = "Photoshop.txt";
+            }
             long savedTicks = 0;
             if (File.Exists(filePath))
             {
@@ -87,8 +117,7 @@ namespace timerActive
             long totalTicks = savedTicks + stopwatch.ElapsedTicks;
             File.WriteAllText(filePath, totalTicks.ToString());
             TimeSpan totalTime = new TimeSpan(totalTicks);
-            //global.Text = totalTime.ToString();
-            global.Text = totalTime.ToString("hh':'mm':'ss");
+            globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -116,7 +145,7 @@ namespace timerActive
             //IntPtr handle = GetForegroundWindow();
             //GetWindowThreadProcessId(handle, out uint pid);
             //Process p = Process.GetProcessById((int)pid);
-            //label1.Text = $"Имя процесса: {p.ProcessName}";
+            //NameProcess.Text = $"Имя процесса: {p.ProcessName}";
 
             //отслеживает активное окно
             IntPtr hWnd = GetForegroundWindow();
@@ -125,7 +154,8 @@ namespace timerActive
                 int processId;
                 GetWindowThreadProcessId(hWnd, out processId);
                 Process process = Process.GetProcessById(processId);
-                if (process.ProcessName == "3dsmax")
+                //inputnameProcces - имя процесса
+                if (process.ProcessName == inputnameProcces)
                 {
                     Active.CheckState = CheckState.Checked;
                     stopwatch.Start();
@@ -167,27 +197,29 @@ namespace timerActive
         {
             //таймер
             stopwatch.Reset();
-            File.WriteAllText("elapsedTicks.txt", "");
+
+            if (inputnameProcces == "3dsmax")
+            {
+                File.WriteAllText("3dsmax.txt", "");
+            }
+            if (inputnameProcces == "Photoshop")
+            {
+                File.WriteAllText("Photoshop.txt", "");
+            }
+            globalTimer.Text = "00:00:00";
         }
 
         //сохранение таймера
         private void SaveElapsedTime()
         {
-            //// Открываем файл для записи
-            //using (StreamWriter sw = new StreamWriter("elapsedTicks.txt"))
-            //{
-            //    // Записываем значение ElapsedTicks в файл
-            //    sw.WriteLine(stopwatch.ElapsedTicks);
-            //}
-
-            //string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "elapsedTicks.txt");
-            //string elapsedTicksString = stopwatch.Elapsed.Ticks.ToString();
-            //File.WriteAllText(filePath, elapsedTicksString);
-
-            //string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "elapsedTicks.txt");
-            //File.WriteAllText("elapsedTicks.txt", stopwatch.ElapsedTicks.ToString());
-
-            string filePath = "elapsedTicks.txt";
+            if (inputnameProcces == "3dsmax")
+            {
+                filePath = "3dsmax.txt";
+            }
+            if (inputnameProcces == "Photoshop")
+            {
+                filePath = "Photoshop.txt";
+            }   
             long elapsedTicks = stopwatch.ElapsedTicks + GetSavedElapsedTimeTicks(filePath);
             SaveElapsedTimeTicks(filePath, elapsedTicks);
         }
@@ -202,15 +234,62 @@ namespace timerActive
 
             return 0;
         }
-
         private void SaveElapsedTimeTicks(string filePath, long elapsedTicks)
         {
             File.WriteAllText(filePath, elapsedTicks.ToString());
         }
-
         private void timerActive_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveElapsedTime();
+        }
+
+        //ввод данных
+        private void inputProceccName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            inputnameProcces = inputProcessName.Text;
+        }
+
+        //нажатие на кнопку
+        private void GetTotalTime_Click(object sender, EventArgs e)
+        {
+            if (stopwatch.ElapsedTicks > 0)
+            {
+                if (inputnameProcces == "3dsmax")
+                {
+                    filePath = "3dsmax.txt";
+                }
+                if (inputnameProcces == "Photoshop")
+                {
+                    filePath = "Photoshop.txt";
+                }
+                long savedTicks = 0;
+                if (File.Exists(filePath))
+                {
+                    string savedTimeStr = File.ReadAllText(filePath);
+                    long.TryParse(savedTimeStr, out savedTicks);
+                }
+                long totalTicks = savedTicks + stopwatch.ElapsedTicks;
+                File.WriteAllText(filePath, totalTicks.ToString());
+                TimeSpan totalTime = new TimeSpan(totalTicks);
+                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+                stopwatch.Reset();
+            }
+
+            //if (stopwatch.ElapsedTicks > 0)
+            //{
+            //    long savedTotalTicks = 0; // сохраненное общее время
+            //    stopwatch.Stop();
+            //    // вычисляем общее время и сохраняем его в файл
+            //    long totalTicks = savedTotalTicks + stopwatch.ElapsedTicks;
+            //    File.WriteAllText(filePath, totalTicks.ToString());
+            //    // выводим общее время на форму
+            //    TimeSpan totalTime = new TimeSpan(totalTicks);
+            //    globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+            //    // сбрасываем значения переменных
+            //    savedTotalTicks = 0;
+            //    File.WriteAllText(filePath, savedTotalTicks.ToString());
+            //    stopwatch.Reset();
+            //}
         }
     }
 }
