@@ -22,18 +22,18 @@ namespace timerActive
         //static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         //возвращает window title
-        //[DllImport("user32.dll")]
-        //static extern IntPtr GetForegroundWindow();
-        //[DllImport("user32.dll")]
-        //static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundTitle();
+        [DllImport("user32.dll")]
+        static extern int GetWindowTitle(IntPtr hWnd, StringBuilder text, int count);
 
         //возвращает имя процесса
-        //[DllImport("user32.dll")]
-        //static extern IntPtr GetForegroundWindow();
-        //[DllImport("user32.dll")]
-        //static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-        //[DllImport("user32.dll", SetLastError = true)]
-        //static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundProc();
+        [DllImport("user32.dll")]
+        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
         //отслеживает активное окно
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -57,14 +57,15 @@ namespace timerActive
         private POINT prevPoint;
 
         //ввод данных
-        public string inputnameProcces;
+        public string inputNameProcces;
+        private string fileName = "inputProcessNameCollection.txt";
         //путь файла
         string filePath = "3dsmax.txt";
 
         public timerActive()
         {
             InitializeComponent();
-
+            LoadComboBoxValues();
             //подписка на закрытие приложения
             FormClosing += new FormClosingEventHandler(timerActive_FormClosing);
         }
@@ -75,39 +76,22 @@ namespace timerActive
             //сборос секундомера
             stopwatch.Reset();
 
-            //загрузка таймера
-            //string filePath = "3dsmax.txt";
-            //long savedTicks = 0;
-            //if (File.Exists(filePath))
-            //{
-            //    string savedTimeStr = File.ReadAllText(filePath);
-            //    long.TryParse(savedTimeStr, out savedTicks);
-            //}
-            //long totalTicks = savedTicks + stopwatch.ElapsedTicks;
-            //File.WriteAllText(filePath, totalTicks.ToString());
-            //TimeSpan totalTime = new TimeSpan(totalTicks);
-            //globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
-
+            //ввод данных в comboBox (после ввода данных, загружаются данные для таймера)
             inputProcessName.SelectedIndexChanged += inputProcessName_SelectedIndexChanged;
         }
+        //ввод данных
         private void inputProcessName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Вызываем метод для загрузки данных из файла
+            //Вызывает метод для загрузки данных из файла
+            inputNameProcces = inputProcessName.Text;
             LoadDataFromFile();
+            acceptNameProcess.Enabled = false;
             inputProcessName.Enabled = false;
         }
         private void LoadDataFromFile()
         {
-            // Здесь загружаем данные из файла и выполняем необходимые действия
-            //загрузка таймера
-            if (inputnameProcces == "3dsmax")
-            {
-                filePath = "3dsmax.txt";
-            }
-            if (inputnameProcces == "Photoshop")
-            {
-                filePath = "Photoshop.txt";
-            }
+            //загрузка данных для таймера
+            filePath = inputNameProcces + ".txt";
             long savedTicks = 0;
             if (File.Exists(filePath))
             {
@@ -136,16 +120,16 @@ namespace timerActive
             //}
 
             //возвращает window title
-            //IntPtr handle = GetForegroundWindow();
-            //StringBuilder windowTitle = new StringBuilder(256);
-            //GetWindowText(handle, windowTitle, 256);
-            //label1.Text = windowTitle.ToString();
+            IntPtr handleTitle = GetForegroundWindow();
+            StringBuilder windowTitle = new StringBuilder(256);
+            GetWindowText(handleTitle, windowTitle, 256);
+            activeTitle.Text = windowTitle.ToString();
 
             //возвращает имя процесса
-            //IntPtr handle = GetForegroundWindow();
-            //GetWindowThreadProcessId(handle, out uint pid);
-            //Process p = Process.GetProcessById((int)pid);
-            //NameProcess.Text = $"Имя процесса: {p.ProcessName}";
+            IntPtr handleProc = GetForegroundWindow();
+            GetWindowThreadProcessId(handleProc, out uint pid);
+            Process p = Process.GetProcessById((int)pid);
+            activeProcess.Text = $"{p.ProcessName}";
 
             //отслеживает активное окно
             IntPtr hWnd = GetForegroundWindow();
@@ -155,7 +139,7 @@ namespace timerActive
                 GetWindowThreadProcessId(hWnd, out processId);
                 Process process = Process.GetProcessById(processId);
                 //inputnameProcces - имя процесса
-                if (process.ProcessName == inputnameProcces)
+                if (process.ProcessName == inputNameProcces)
                 {
                     Active.CheckState = CheckState.Checked;
                     stopwatch.Start();
@@ -195,31 +179,24 @@ namespace timerActive
 
         private void reset_Click(object sender, EventArgs e)
         {
-            //таймер
-            stopwatch.Reset();
+            DialogResult result = MessageBox.Show("Really?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (inputnameProcces == "3dsmax")
+            if (result == DialogResult.Yes)
             {
-                File.WriteAllText("3dsmax.txt", "");
+                //таймер
+                stopwatch.Reset();
+                //перезаписывает содержимое файла с именем, которое введено в comboBox + ".txt"
+                string folderPath = Application.StartupPath; // путь к папке с программой
+                string fileName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+                filePath = Path.Combine(folderPath, fileName); // путь к файлу
+                File.WriteAllText(filePath + ".txt", "");
+                globalTimer.Text = "00:00:00";
             }
-            if (inputnameProcces == "Photoshop")
-            {
-                File.WriteAllText("Photoshop.txt", "");
-            }
-            globalTimer.Text = "00:00:00";
         }
-
         //сохранение таймера
         private void SaveElapsedTime()
         {
-            if (inputnameProcces == "3dsmax")
-            {
-                filePath = "3dsmax.txt";
-            }
-            if (inputnameProcces == "Photoshop")
-            {
-                filePath = "Photoshop.txt";
-            }   
+            filePath = inputNameProcces + ".txt";
             long elapsedTicks = stopwatch.ElapsedTicks + GetSavedElapsedTimeTicks(filePath);
             SaveElapsedTimeTicks(filePath, elapsedTicks);
         }
@@ -240,28 +217,77 @@ namespace timerActive
         }
         private void timerActive_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveElapsedTime();
-        }
+            //сохраняет данные таймера в файл с именем inputNameProcces + ".txt"
+            if (stopwatch.ElapsedTicks > 0)
+            {
+                filePath = inputNameProcces + ".txt";
+                long savedTicks = 0;
+                if (File.Exists(filePath))
+                {
+                    string savedTimeStr = File.ReadAllText(filePath);
+                    long.TryParse(savedTimeStr, out savedTicks);
+                }
+                long totalTicks = savedTicks + stopwatch.ElapsedTicks;
+                File.WriteAllText(filePath, totalTicks.ToString());
+            }
 
-        //ввод данных
-        private void inputProceccName_SelectedIndexChanged(object sender, EventArgs e)
+            //если пользователь ничего не ввел или если пользователь 
+            //что-то ввел но не нажал кнопку acceptNameProcess,
+            //то переменная filePath = "empty.txt" и ничего не сохраняется
+            if (inputProcessName.Text == "" || !File.Exists(inputProcessName.Text))
+            {
+                filePath = "empty.txt";
+            }  
+            else
+            {
+                SaveElapsedTime();
+            }
+
+
+
+            //метод сохранения введенных в comboBox данных
+            SaveComboBoxValues();
+        }
+        private void LoadComboBoxValues()
         {
-            inputnameProcces = inputProcessName.Text;
+            //загружает введенные в comboBox данные
+            if (File.Exists(fileName))
+            {
+                string[] lines = File.ReadAllLines(fileName);
+                inputProcessName.Items.AddRange(lines);
+            }
+        }
+        private void SaveComboBoxValues()
+        {
+            //создает файл inputProcessNameCollection.txt если его нет
+            if (!File.Exists("inputProcessNameCollection.txt"))
+            {
+                File.Create("inputProcessNameCollection.txt").Close();
+            }
+
+            //добавляет в файл inputProcessNameCollection.txt введенные в comboBox данные
+            //(если их нет)
+            string newItem = inputProcessName.Text.Trim();
+            if (!string.IsNullOrEmpty(newItem))
+            {
+                // Проверяем, содержится ли элемент в файле
+                if (!File.ReadAllLines("inputProcessNameCollection.txt").Contains(newItem))
+                {
+                    // Добавляем строку в файл
+                    using (StreamWriter writer = new StreamWriter("inputProcessNameCollection.txt", true))
+                    {
+                        writer.WriteLine(newItem);
+                    }
+                }
+            }
         }
 
-        //нажатие на кнопку
+        //нажатие на кнопку "Get Total Time"
         private void GetTotalTime_Click(object sender, EventArgs e)
         {
             if (stopwatch.ElapsedTicks > 0)
             {
-                if (inputnameProcces == "3dsmax")
-                {
-                    filePath = "3dsmax.txt";
-                }
-                if (inputnameProcces == "Photoshop")
-                {
-                    filePath = "Photoshop.txt";
-                }
+                filePath = inputNameProcces + ".txt";
                 long savedTicks = 0;
                 if (File.Exists(filePath))
                 {
@@ -274,22 +300,67 @@ namespace timerActive
                 globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
                 stopwatch.Reset();
             }
+        }
 
-            //if (stopwatch.ElapsedTicks > 0)
-            //{
-            //    long savedTotalTicks = 0; // сохраненное общее время
-            //    stopwatch.Stop();
-            //    // вычисляем общее время и сохраняем его в файл
-            //    long totalTicks = savedTotalTicks + stopwatch.ElapsedTicks;
-            //    File.WriteAllText(filePath, totalTicks.ToString());
-            //    // выводим общее время на форму
-            //    TimeSpan totalTime = new TimeSpan(totalTicks);
-            //    globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
-            //    // сбрасываем значения переменных
-            //    savedTotalTicks = 0;
-            //    File.WriteAllText(filePath, savedTotalTicks.ToString());
-            //    stopwatch.Reset();
-            //}
+        //создание нового файла проекта
+        private void acceptNameProcess_Click(object sender, EventArgs e)
+        {
+            createNewFileProject();
+        }
+
+        void createNewFileProject()
+        {      
+            string folderPath = Application.StartupPath; // путь к папке с программой
+            string fileName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+
+            //если у fileName нет суффикса ".txt" то он добавляется
+            if (!fileName.EndsWith(".txt"))
+            {
+                fileName += ".txt";
+            }
+
+            filePath = Path.Combine(folderPath, fileName); // путь к файлу
+
+            if (File.Exists(filePath))
+            {
+                //загрузка данных для таймера
+                long savedTicks = 0;
+                string savedTimeStr = File.ReadAllText(filePath);
+                long.TryParse(savedTimeStr, out savedTicks);
+                long totalTicks = savedTicks + stopwatch.ElapsedTicks;
+                TimeSpan totalTime = new TimeSpan(totalTicks);
+                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");           
+            }
+            else
+            {
+                File.Create(inputProcessName.Text + ".txt").Close();
+            }
+            filePath = "empty.txt";
+
+            if (inputProcessName.Text != "")
+            {
+                inputProcessName.Enabled = false;
+                acceptNameProcess.Enabled = false;
+            }
+            inputNameProcces = inputProcessName.Text;
+        }
+
+        //добавляет введенные в comboBox данные
+        private void add_Click(object sender, EventArgs e)
+        {
+            //создает файл inputProcessNameCollection.txt если его нет
+            if (!File.Exists("inputProcessNameCollection.txt"))
+            {
+                File.Create("inputProcessNameCollection.txt").Close();
+            }
+
+            string newProcess = inputProcessName.Text;   
+            //проверка на наличие введенных данных
+            if (!inputProcessName.Items.Contains(newProcess))
+            {
+                inputProcessName.Items.Add(newProcess);
+                add.Enabled = false;
+            }
         }
     }
 }
