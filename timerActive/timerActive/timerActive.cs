@@ -10,10 +10,11 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Threading;
 
 namespace timerActive
 {
-    public partial class timerActive : Form
+    public partial class TimerActive : Form
     {
         //отслеживает активность приложения по window title
         //[DllImport("user32.dll")]
@@ -58,26 +59,39 @@ namespace timerActive
 
         //ввод данных
         public string inputNameProcces;
-        private string fileName = "inputProcessNameCollection.txt";
-        //путь файла
-        string filePath = "3dsmax.txt";
+        private string fileProcessName = "inputProcessNameCollection.txt";
+        private string fileProjectName = "inputProjectNameCollection.txt";
+        //для контроля режима работы приложения
+        //(таймер активируется только при движении или при активном окне)
+        bool mouseMoveMode = true;
+        //для последовательности ввода данных(сначала имя проекта потом имя процесса)
+        bool sequenceProcesses = false;
 
-        public timerActive()
+        public TimerActive()
         {
             InitializeComponent();
             LoadComboBoxValues();
+
+            if (sequenceProcesses == false)
+            {
+                addProcess.Enabled = false;
+                inputProcessName.Enabled = false;
+            }
+
             //подписка на закрытие приложения
             FormClosing += new FormClosingEventHandler(timerActive_FormClosing);
+            // Подписываемся на событие перемещения формы 1
         }
         private void timerActive_Load(object sender, EventArgs e)
         {
             stopwatch = new Stopwatch();
-
+            mouseMovingMode.CheckState = CheckState.Checked;
             //сборос секундомера
             stopwatch.Reset();
 
             //ввод данных в comboBox (после ввода данных, загружаются данные для таймера)
             inputProcessName.SelectedIndexChanged += inputProcessName_SelectedIndexChanged;
+            inputProjectName.SelectedIndexChanged += inputProjectName_SelectedIndexChanged;
         }
         //ввод данных
         private void inputProcessName_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,13 +99,25 @@ namespace timerActive
             //Вызывает метод для загрузки данных из файла
             inputNameProcces = inputProcessName.Text;
             LoadDataFromFile();
-            acceptNameProcess.Enabled = false;
+            addProcess.Enabled = false;
             inputProcessName.Enabled = false;
         }
+        private void inputProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            addProject.Enabled = false;
+            inputProjectName.Enabled = false;
+            addProcess.Enabled = true;
+            inputProcessName.Enabled = true;
+        }
+        //загрузка данных для таймера
         private void LoadDataFromFile()
         {
-            //загрузка данных для таймера
-            filePath = inputNameProcces + ".txt";
+            string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+            string projectFolder = inputProjectName.Text; // имя папки проекта
+            string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+            string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+            filePath = filePath + ".txt";
+
             long savedTicks = 0;
             if (File.Exists(filePath))
             {
@@ -103,7 +129,7 @@ namespace timerActive
             TimeSpan totalTime = new TimeSpan(totalTicks);
             globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
         }
-
+        //метод таймера
         private void timer_Tick(object sender, EventArgs e)
         {
             //отслеживает активность приложения по window title
@@ -138,7 +164,7 @@ namespace timerActive
                 int processId;
                 GetWindowThreadProcessId(hWnd, out processId);
                 Process process = Process.GetProcessById(processId);
-                //inputnameProcces - имя процесса
+                //inputNameProcces - имя процесса
                 if (process.ProcessName == inputNameProcces)
                 {
                     Active.CheckState = CheckState.Checked;
@@ -156,29 +182,37 @@ namespace timerActive
                 Active.CheckState = CheckState.Unchecked;
                 stopwatch.Stop();
             }
-
-            //движение мышки
-            POINT currentPoint;
-            GetCursorPos(out currentPoint);
-            if ((Active.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
-               ||(Active.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
+            //режим движения мышки вкл/выкл
+            if (mouseMoveMode == true)
             {
-                checkMouse.CheckState = CheckState.Checked;
-                stopwatch.Start();
+                POINT currentPoint;
+                GetCursorPos(out currentPoint);
+                if ((Active.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
+                   || (Active.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
+                {
+                    checkMouse.CheckState = CheckState.Checked;
+                    stopwatch.Start();
+                }
+                else
+                {
+                    checkMouse.CheckState = CheckState.Unchecked;
+                    stopwatch.Stop();
+                }
+                prevPoint = currentPoint;
             }
-            else
-            {
-                checkMouse.CheckState = CheckState.Unchecked;
-                stopwatch.Stop();
-            }
-            prevPoint = currentPoint;
 
             //таймер
             stopWatchLabel.Text = string.Format("{0:hh\\:mm\\:ss\\:fff}", stopwatch.Elapsed);
         }
-
+        //сброс таймера
         private void reset_Click(object sender, EventArgs e)
         {
+            string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+            string projectFolder = inputProjectName.Text; // имя папки проекта
+            string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+            string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+            filePath = filePath + ".txt";
+
             DialogResult result = MessageBox.Show("Really?", "Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -186,17 +220,19 @@ namespace timerActive
                 //таймер
                 stopwatch.Reset();
                 //перезаписывает содержимое файла с именем, которое введено в comboBox + ".txt"
-                string folderPath = Application.StartupPath; // путь к папке с программой
-                string fileName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
-                filePath = Path.Combine(folderPath, fileName); // путь к файлу
-                File.WriteAllText(filePath + ".txt", "");
+                File.WriteAllText(filePath, "");
                 globalTimer.Text = "00:00:00";
             }
         }
         //сохранение таймера
         private void SaveElapsedTime()
         {
-            filePath = inputNameProcces + ".txt";
+            string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+            string projectFolder = inputProjectName.Text; // имя папки проекта
+            string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+            string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+            filePath = filePath + ".txt";
+
             long elapsedTicks = stopwatch.ElapsedTicks + GetSavedElapsedTimeTicks(filePath);
             SaveElapsedTimeTicks(filePath, elapsedTicks);
         }
@@ -217,10 +253,20 @@ namespace timerActive
         }
         private void timerActive_FormClosing(object sender, FormClosingEventArgs e)
         {
+            string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+            string projectFolder = inputProjectName.Text; // имя папки проекта
+            string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+            string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+            filePath = filePath + ".txt";
+
+            foreach (TimerActive childForm in this.MdiChildren)
+            {
+                childForm.Close();
+            }
+
             //сохраняет данные таймера в файл с именем inputNameProcces + ".txt"
             if (stopwatch.ElapsedTicks > 0)
             {
-                filePath = inputNameProcces + ".txt";
                 long savedTicks = 0;
                 if (File.Exists(filePath))
                 {
@@ -230,7 +276,6 @@ namespace timerActive
                 long totalTicks = savedTicks + stopwatch.ElapsedTicks;
                 File.WriteAllText(filePath, totalTicks.ToString());
             }
-
             //если пользователь ничего не ввел или если пользователь 
             //что-то ввел но не нажал кнопку acceptNameProcess,
             //то переменная filePath = "empty.txt" и ничего не сохраняется
@@ -242,20 +287,25 @@ namespace timerActive
             {
                 SaveElapsedTime();
             }
-
-
-
             //метод сохранения введенных в comboBox данных
             SaveComboBoxValues();
         }
+        
         private void LoadComboBoxValues()
         {
-            //загружает введенные в comboBox данные
-            if (File.Exists(fileName))
+            //загружает введенные в comboBox inputProcessName данные
+            if (File.Exists(fileProcessName))
             {
-                string[] lines = File.ReadAllLines(fileName);
+                string[] lines = File.ReadAllLines(fileProcessName);
                 inputProcessName.Items.AddRange(lines);
             }
+            //загружает введенные в comboBox inputProjectName данные
+            if (File.Exists(fileProjectName))
+            {
+                string[] lines = File.ReadAllLines(fileProjectName);
+                inputProjectName.Items.AddRange(lines);
+            }
+           
         }
         private void SaveComboBoxValues()
         {
@@ -264,30 +314,56 @@ namespace timerActive
             {
                 File.Create("inputProcessNameCollection.txt").Close();
             }
+            //создает файл inputProjectNameCollection.txt если его нет
+            if (!File.Exists("inputProjectNameCollection.txt"))
+            {
+                File.Create("inputProjectNameCollection.txt").Close();
+            }
 
             //добавляет в файл inputProcessNameCollection.txt введенные в comboBox данные
             //(если их нет)
-            string newItem = inputProcessName.Text.Trim();
-            if (!string.IsNullOrEmpty(newItem))
+            string newItemProcess = inputProcessName.Text.Trim();
+            if (!string.IsNullOrEmpty(newItemProcess))
             {
                 // Проверяем, содержится ли элемент в файле
-                if (!File.ReadAllLines("inputProcessNameCollection.txt").Contains(newItem))
+                if (!File.ReadAllLines("inputProcessNameCollection.txt").Contains(newItemProcess))
                 {
                     // Добавляем строку в файл
                     using (StreamWriter writer = new StreamWriter("inputProcessNameCollection.txt", true))
                     {
-                        writer.WriteLine(newItem);
+                        writer.WriteLine(newItemProcess);
+                    }
+                }
+            }
+
+            //добавляет в файл inputProjectNameCollection.txt введенные в comboBox данные
+            //(если их нет)
+            string newItemProject = inputProjectName.Text.Trim();
+            if (!string.IsNullOrEmpty(newItemProject))
+            {
+                // Проверяем, содержится ли элемент в файле
+                if (!File.ReadAllLines("inputProjectNameCollection.txt").Contains(newItemProject))
+                {
+                    // Добавляем строку в файл
+                    using (StreamWriter writer = new StreamWriter("inputProjectNameCollection.txt", true))
+                    {
+                        writer.WriteLine(newItemProject);
                     }
                 }
             }
         }
-
         //нажатие на кнопку "Get Total Time"
         private void GetTotalTime_Click(object sender, EventArgs e)
         {
             if (stopwatch.ElapsedTicks > 0)
             {
-                filePath = inputNameProcces + ".txt";
+                string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+                string projectFolder = inputProjectName.Text; // имя папки проекта
+                string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+                string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+                filePath = filePath + ".txt";
+
+                //filePath = inputNameProcces + ".txt";
                 long savedTicks = 0;
                 if (File.Exists(filePath))
                 {
@@ -301,25 +377,31 @@ namespace timerActive
                 stopwatch.Reset();
             }
         }
-
         //создание нового файла проекта
-        private void acceptNameProcess_Click(object sender, EventArgs e)
+        private void addProcess_Click(object sender, EventArgs e)
         {
-            createNewFileProject();
-        }
-
-        void createNewFileProject()
-        {      
-            string folderPath = Application.StartupPath; // путь к папке с программой
-            string fileName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
-
-            //если у fileName нет суффикса ".txt" то он добавляется
-            if (!fileName.EndsWith(".txt"))
+            //создает файл inputProcessNameCollection.txt если его нет
+            if (!File.Exists("inputProcessNameCollection.txt"))
             {
-                fileName += ".txt";
+                File.Create("inputProcessNameCollection.txt").Close();
             }
 
-            filePath = Path.Combine(folderPath, fileName); // путь к файлу
+            string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
+            string projectFolder = inputProjectName.Text; // имя папки проекта
+            string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
+            string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
+
+            //проверка на наличие введенных данных в comboBox inputProcessName
+            if (!inputProcessName.Items.Contains(processName))
+            {
+                inputProcessName.Items.Add(processName);
+            }
+
+            //если у fileName нет суффикса ".txt" то он добавляется
+            if (!fileProcessName.EndsWith(".txt"))
+            {
+                fileProcessName += ".txt";
+            }
 
             if (File.Exists(filePath))
             {
@@ -329,38 +411,90 @@ namespace timerActive
                 long.TryParse(savedTimeStr, out savedTicks);
                 long totalTicks = savedTicks + stopwatch.ElapsedTicks;
                 TimeSpan totalTime = new TimeSpan(totalTicks);
-                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");           
+                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
             }
             else
             {
-                File.Create(inputProcessName.Text + ".txt").Close();
+                //создание файла процесса
+                File.Create(filePath + ".txt").Close();
             }
             filePath = "empty.txt";
 
             if (inputProcessName.Text != "")
             {
                 inputProcessName.Enabled = false;
-                acceptNameProcess.Enabled = false;
+                addProcess.Enabled = false;
             }
             inputNameProcces = inputProcessName.Text;
         }
 
-        //добавляет введенные в comboBox данные
-        private void add_Click(object sender, EventArgs e)
+        //режимы работы программы (mouse moving mode, active window mode)
+        private void mouseMovingMode_CheckedChanged(object sender, EventArgs e)
         {
-            //создает файл inputProcessNameCollection.txt если его нет
-            if (!File.Exists("inputProcessNameCollection.txt"))
+            if (mouseMovingMode.CheckState == CheckState.Checked)
             {
-                File.Create("inputProcessNameCollection.txt").Close();
+                activeWindowMode.CheckState = CheckState.Unchecked;
+                mouseMoveMode = true;
+            }
+        }
+        private void activeWindowMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (activeWindowMode.CheckState == CheckState.Checked)
+            {
+                mouseMovingMode.CheckState = CheckState.Unchecked;
+                mouseMoveMode = false;
+            }
+        }
+        //добавляет папку для проекта
+        private void addProject_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("inputProjectNameCollection.txt"))
+            {
+                File.Create("inputProjectNameCollection.txt").Close();
             }
 
-            string newProcess = inputProcessName.Text;   
+            string newProject = inputProjectName.Text;
             //проверка на наличие введенных данных
-            if (!inputProcessName.Items.Contains(newProcess))
+            if (!inputProjectName.Items.Contains(newProject))
             {
-                inputProcessName.Items.Add(newProcess);
-                add.Enabled = false;
+                inputProjectName.Items.Add(newProject);
             }
+
+            if (!Directory.Exists(inputProjectName.Text) && inputProjectName.Text != "")
+            {
+                Directory.CreateDirectory(inputProjectName.Text);
+            }
+            addProject.Enabled = false;
+            inputProjectName.Enabled = false;
+
+            addProcess.Enabled = true;
+            inputProcessName.Enabled = true;
+        }
+
+        //изменить проект и процесс
+        private void changeProject_Click(object sender, EventArgs e)
+        {
+            if (inputProjectName.Text != "" && inputProcessName.Text != "")
+            {
+                addProject.Enabled = true;
+                inputProjectName.Enabled = true;
+            }
+        }
+
+        //открывает TimerActive 
+        private void addNewProcess_Click(object sender, EventArgs e)
+        {
+            //путь к .ехе этого приложения
+            string appPath = Application.ExecutablePath;
+            Process.Start(appPath);
+        }
+
+        private void options_Click(object sender, EventArgs e)
+        {
+            Options options = new Options();
+            Hide();
+            options.Show();
+            options.Location = Location;
         }
     }
 }

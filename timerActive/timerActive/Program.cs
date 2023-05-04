@@ -16,7 +16,8 @@ namespace timerActive
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new timerActive());
+            Application.Run(new TimerActive());
+
         }
     }
 }

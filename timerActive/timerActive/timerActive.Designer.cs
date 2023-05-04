@@ -1,6 +1,6 @@
 ﻿namespace timerActive
 {
-    partial class timerActive
+    partial class TimerActive
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimerActive));
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.Active = new System.Windows.Forms.CheckBox();
             this.reset = new System.Windows.Forms.Button();
@@ -38,16 +39,28 @@
             this.totalTime = new System.Windows.Forms.Label();
             this.inputProcessName = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.add = new System.Windows.Forms.Button();
-            this.acceptNameProcess = new System.Windows.Forms.Button();
+            this.changeProject = new System.Windows.Forms.Button();
+            this.addNewProcess = new System.Windows.Forms.Button();
+            this.addProject = new System.Windows.Forms.Button();
+            this.inputProjectName = new System.Windows.Forms.ComboBox();
+            this.addProcess = new System.Windows.Forms.Button();
             this.GetTotalTime = new System.Windows.Forms.Button();
             this.activeProcess = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.activeTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.activeWindowMode = new System.Windows.Forms.CheckBox();
+            this.mouseMovingMode = new System.Windows.Forms.CheckBox();
+            this.options = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer
@@ -57,189 +70,206 @@
             // 
             // Active
             // 
-            this.Active.AutoSize = true;
-            this.Active.Location = new System.Drawing.Point(7, 49);
+            resources.ApplyResources(this.Active, "Active");
             this.Active.Name = "Active";
-            this.Active.Size = new System.Drawing.Size(56, 17);
-            this.Active.TabIndex = 1;
-            this.Active.Text = "Active";
             this.Active.UseVisualStyleBackColor = true;
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(0, 239);
+            resources.ApplyResources(this.reset, "reset");
             this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(234, 23);
-            this.reset.TabIndex = 4;
-            this.reset.Text = "Reset";
             this.reset.UseVisualStyleBackColor = true;
             this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // stopWatchLabel
             // 
-            this.stopWatchLabel.AutoSize = true;
+            resources.ApplyResources(this.stopWatchLabel, "stopWatchLabel");
             this.stopWatchLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.stopWatchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.stopWatchLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.stopWatchLabel.Location = new System.Drawing.Point(0, 0);
             this.stopWatchLabel.Name = "stopWatchLabel";
-            this.stopWatchLabel.Size = new System.Drawing.Size(237, 42);
-            this.stopWatchLabel.TabIndex = 5;
-            this.stopWatchLabel.Text = "00:00:00:000";
             // 
             // checkMouse
             // 
-            this.checkMouse.AutoSize = true;
-            this.checkMouse.Location = new System.Drawing.Point(7, 74);
+            resources.ApplyResources(this.checkMouse, "checkMouse");
             this.checkMouse.Name = "checkMouse";
-            this.checkMouse.Size = new System.Drawing.Size(91, 17);
-            this.checkMouse.TabIndex = 6;
-            this.checkMouse.Text = "Check mouse";
             this.checkMouse.UseVisualStyleBackColor = true;
             // 
             // globalTimer
             // 
-            this.globalTimer.AutoSize = true;
+            resources.ApplyResources(this.globalTimer, "globalTimer");
             this.globalTimer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.globalTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.globalTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.globalTimer.Location = new System.Drawing.Point(-4, 152);
             this.globalTimer.Name = "globalTimer";
-            this.globalTimer.Size = new System.Drawing.Size(243, 63);
-            this.globalTimer.TabIndex = 7;
-            this.globalTimer.Text = "00:00:00";
             // 
             // totalTime
             // 
-            this.totalTime.AutoSize = true;
-            this.totalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalTime.Location = new System.Drawing.Point(57, 123);
+            resources.ApplyResources(this.totalTime, "totalTime");
             this.totalTime.Name = "totalTime";
-            this.totalTime.Size = new System.Drawing.Size(112, 25);
-            this.totalTime.TabIndex = 8;
-            this.totalTime.Text = "Total time:";
             // 
             // inputProcessName
             // 
             this.inputProcessName.FormattingEnabled = true;
-            this.inputProcessName.Location = new System.Drawing.Point(91, 95);
+            resources.ApplyResources(this.inputProcessName, "inputProcessName");
             this.inputProcessName.Name = "inputProcessName";
-            this.inputProcessName.Size = new System.Drawing.Size(135, 21);
-            this.inputProcessName.TabIndex = 13;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.add);
-            this.panel1.Controls.Add(this.acceptNameProcess);
-            this.panel1.Location = new System.Drawing.Point(3, 92);
+            this.panel1.Controls.Add(this.changeProject);
+            this.panel1.Controls.Add(this.addNewProcess);
+            this.panel1.Controls.Add(this.addProject);
+            this.panel1.Controls.Add(this.inputProjectName);
+            this.panel1.Controls.Add(this.addProcess);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(225, 27);
-            this.panel1.TabIndex = 15;
             // 
-            // add
+            // changeProject
             // 
-            this.add.Location = new System.Drawing.Point(50, 1);
-            this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(36, 23);
-            this.add.TabIndex = 18;
-            this.add.Text = "Add";
-            this.add.UseVisualStyleBackColor = true;
-            this.add.Click += new System.EventHandler(this.add_Click);
+            resources.ApplyResources(this.changeProject, "changeProject");
+            this.changeProject.Name = "changeProject";
+            this.changeProject.UseVisualStyleBackColor = true;
+            this.changeProject.Click += new System.EventHandler(this.changeProject_Click);
             // 
-            // acceptNameProcess
+            // addNewProcess
             // 
-            this.acceptNameProcess.Location = new System.Drawing.Point(1, 1);
-            this.acceptNameProcess.Name = "acceptNameProcess";
-            this.acceptNameProcess.Size = new System.Drawing.Size(49, 23);
-            this.acceptNameProcess.TabIndex = 17;
-            this.acceptNameProcess.Text = "Accept";
-            this.acceptNameProcess.UseVisualStyleBackColor = true;
-            this.acceptNameProcess.Click += new System.EventHandler(this.acceptNameProcess_Click);
+            resources.ApplyResources(this.addNewProcess, "addNewProcess");
+            this.addNewProcess.Name = "addNewProcess";
+            this.addNewProcess.UseVisualStyleBackColor = true;
+            this.addNewProcess.Click += new System.EventHandler(this.addNewProcess_Click);
+            // 
+            // addProject
+            // 
+            resources.ApplyResources(this.addProject, "addProject");
+            this.addProject.Name = "addProject";
+            this.addProject.UseVisualStyleBackColor = true;
+            this.addProject.Click += new System.EventHandler(this.addProject_Click);
+            // 
+            // inputProjectName
+            // 
+            this.inputProjectName.FormattingEnabled = true;
+            resources.ApplyResources(this.inputProjectName, "inputProjectName");
+            this.inputProjectName.Name = "inputProjectName";
+            this.inputProjectName.SelectedIndexChanged += new System.EventHandler(this.inputProjectName_SelectedIndexChanged);
+            // 
+            // addProcess
+            // 
+            resources.ApplyResources(this.addProcess, "addProcess");
+            this.addProcess.Name = "addProcess";
+            this.addProcess.UseVisualStyleBackColor = true;
+            this.addProcess.Click += new System.EventHandler(this.addProcess_Click);
             // 
             // GetTotalTime
             // 
-            this.GetTotalTime.Location = new System.Drawing.Point(0, 216);
+            resources.ApplyResources(this.GetTotalTime, "GetTotalTime");
             this.GetTotalTime.Name = "GetTotalTime";
-            this.GetTotalTime.Size = new System.Drawing.Size(234, 23);
-            this.GetTotalTime.TabIndex = 16;
-            this.GetTotalTime.Text = "Get the total time";
             this.GetTotalTime.UseVisualStyleBackColor = true;
             this.GetTotalTime.Click += new System.EventHandler(this.GetTotalTime_Click);
             // 
             // activeProcess
             // 
-            this.activeProcess.AutoSize = true;
-            this.activeProcess.Location = new System.Drawing.Point(48, 0);
+            resources.ApplyResources(this.activeProcess, "activeProcess");
             this.activeProcess.Name = "activeProcess";
-            this.activeProcess.Size = new System.Drawing.Size(77, 13);
-            this.activeProcess.TabIndex = 18;
-            this.activeProcess.Text = "activeProcess ";
             // 
             // label
             // 
-            this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(4, 264);
+            resources.ApplyResources(this.label, "label");
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(48, 13);
-            this.label.TabIndex = 19;
-            this.label.Text = "Process:";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 279);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Title:";
             // 
             // activeTitle
             // 
-            this.activeTitle.AutoSize = true;
-            this.activeTitle.Location = new System.Drawing.Point(48, 15);
+            resources.ApplyResources(this.activeTitle, "activeTitle");
             this.activeTitle.Name = "activeTitle";
-            this.activeTitle.Size = new System.Drawing.Size(56, 13);
-            this.activeTitle.TabIndex = 20;
-            this.activeTitle.Text = "activeTitle";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.activeProcess);
             this.panel2.Controls.Add(this.activeTitle);
-            this.panel2.Location = new System.Drawing.Point(1, 263);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(232, 31);
-            this.panel2.TabIndex = 22;
             // 
-            // timerActive
+            // panel3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.Active);
+            this.panel3.Controls.Add(this.checkMouse);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.activeWindowMode);
+            this.panel4.Controls.Add(this.mouseMovingMode);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // activeWindowMode
+            // 
+            resources.ApplyResources(this.activeWindowMode, "activeWindowMode");
+            this.activeWindowMode.Name = "activeWindowMode";
+            this.activeWindowMode.UseVisualStyleBackColor = true;
+            this.activeWindowMode.CheckedChanged += new System.EventHandler(this.activeWindowMode_CheckedChanged);
+            // 
+            // mouseMovingMode
+            // 
+            resources.ApplyResources(this.mouseMovingMode, "mouseMovingMode");
+            this.mouseMovingMode.Name = "mouseMovingMode";
+            this.mouseMovingMode.UseVisualStyleBackColor = true;
+            this.mouseMovingMode.CheckedChanged += new System.EventHandler(this.mouseMovingMode_CheckedChanged);
+            // 
+            // options
+            // 
+            resources.ApplyResources(this.options, "options");
+            this.options.Name = "options";
+            this.options.UseVisualStyleBackColor = true;
+            this.options.Click += new System.EventHandler(this.options_Click);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // TimerActive
+            // 
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(234, 296);
+            this.Controls.Add(this.options);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label);
             this.Controls.Add(this.GetTotalTime);
             this.Controls.Add(this.inputProcessName);
             this.Controls.Add(this.totalTime);
             this.Controls.Add(this.globalTimer);
-            this.Controls.Add(this.checkMouse);
             this.Controls.Add(this.stopWatchLabel);
             this.Controls.Add(this.reset);
-            this.Controls.Add(this.Active);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximumSize = new System.Drawing.Size(250, 335);
-            this.MinimumSize = new System.Drawing.Size(250, 335);
-            this.Name = "timerActive";
-            this.Text = "Timer active";
+            this.Controls.Add(this.panel3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "TimerActive";
             this.Load += new System.EventHandler(this.timerActive_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,13 +286,23 @@
         private System.Windows.Forms.ComboBox inputProcessName;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button GetTotalTime;
-        private System.Windows.Forms.Button acceptNameProcess;
+        private System.Windows.Forms.Button addProcess;
         private System.Windows.Forms.Label activeProcess;
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.Button add;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label activeTitle;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.CheckBox activeWindowMode;
+        private System.Windows.Forms.CheckBox mouseMovingMode;
+        private System.Windows.Forms.ComboBox inputProjectName;
+        private System.Windows.Forms.Button addProject;
+        private System.Windows.Forms.Button addNewProcess;
+        private System.Windows.Forms.Button options;
+        private System.Windows.Forms.Button changeProject;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
 
