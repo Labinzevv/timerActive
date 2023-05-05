@@ -39,6 +39,12 @@
             this.totalTime = new System.Windows.Forms.Label();
             this.inputProcessName = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.changeReminder = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.reminderHours = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.reminderMinutes = new System.Windows.Forms.NumericUpDown();
+            this.addReminder = new System.Windows.Forms.Button();
             this.changeProject = new System.Windows.Forms.Button();
             this.addNewProcess = new System.Windows.Forms.Button();
             this.addProject = new System.Windows.Forms.Button();
@@ -50,16 +56,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.activeTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mouseOverWindow = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.activeWindowMode = new System.Windows.Forms.CheckBox();
             this.activeMouseMode = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
-            this.mouseOverWindow = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -118,6 +128,12 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.changeReminder);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.reminderHours);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.reminderMinutes);
+            this.panel1.Controls.Add(this.addReminder);
             this.panel1.Controls.Add(this.changeProject);
             this.panel1.Controls.Add(this.addNewProcess);
             this.panel1.Controls.Add(this.addProject);
@@ -125,6 +141,52 @@
             this.panel1.Controls.Add(this.addProcess);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // changeReminder
+            // 
+            resources.ApplyResources(this.changeReminder, "changeReminder");
+            this.changeReminder.Name = "changeReminder";
+            this.changeReminder.UseVisualStyleBackColor = true;
+            this.changeReminder.Click += new System.EventHandler(this.changeReminder_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.BackColor = System.Drawing.SystemColors.Window;
+            this.label6.Name = "label6";
+            // 
+            // reminderHours
+            // 
+            resources.ApplyResources(this.reminderHours, "reminderHours");
+            this.reminderHours.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.reminderHours.Name = "reminderHours";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.BackColor = System.Drawing.SystemColors.Window;
+            this.label5.Name = "label5";
+            // 
+            // reminderMinutes
+            // 
+            resources.ApplyResources(this.reminderMinutes, "reminderMinutes");
+            this.reminderMinutes.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.reminderMinutes.Name = "reminderMinutes";
+            // 
+            // addReminder
+            // 
+            resources.ApplyResources(this.addReminder, "addReminder");
+            this.addReminder.Name = "addReminder";
+            this.addReminder.UseVisualStyleBackColor = true;
+            this.addReminder.Click += new System.EventHandler(this.addReminder_Click);
             // 
             // changeProject
             // 
@@ -191,10 +253,22 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.activeProcess);
             this.panel2.Controls.Add(this.activeTitle);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
             // panel3
             // 
@@ -207,6 +281,17 @@
             this.panel3.Controls.Add(this.mouseActive);
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // mouseOverWindow
+            // 
+            resources.ApplyResources(this.mouseOverWindow, "mouseOverWindow");
+            this.mouseOverWindow.Name = "mouseOverWindow";
+            this.mouseOverWindow.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -247,17 +332,6 @@
             this.options.UseVisualStyleBackColor = true;
             this.options.Click += new System.EventHandler(this.options_Click);
             // 
-            // mouseOverWindow
-            // 
-            resources.ApplyResources(this.mouseOverWindow, "mouseOverWindow");
-            this.mouseOverWindow.Name = "mouseOverWindow";
-            this.mouseOverWindow.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // TimerActive
             // 
             resources.ApplyResources(this, "$this");
@@ -275,10 +349,13 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "TimerActive";
             this.Load += new System.EventHandler(this.timerActive_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -320,6 +397,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox mouseOverWindow;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button addReminder;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown reminderMinutes;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown reminderHours;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button changeReminder;
+        private System.Windows.Forms.Label label8;
     }
 }
 

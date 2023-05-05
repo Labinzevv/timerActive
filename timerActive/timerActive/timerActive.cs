@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Media;
 
 namespace timerActive
 {
@@ -41,6 +42,8 @@ namespace timerActive
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
 
+        //для создания прямоугольника по размеру окна приложения
+        //имя процесса которого указанно в inputNameProcces
         private struct RECT
         {
             public int Left;
@@ -73,10 +76,19 @@ namespace timerActive
         //для последовательности ввода данных(сначала имя проекта потом имя процесса)
         bool sequenceProcesses = false;
 
+        //для времени напоминания
+        string remindHours;
+        string remindMinutes;
+        string globalReminder;
+        string timeFix;
+        //для звука напоминания
+        SoundPlayer soundReminder;
+
         public TimerActive()
         {
             InitializeComponent();
             LoadComboBoxValues();
+            soundReminder = new SoundPlayer("din.wav");
 
             if (sequenceProcesses == false)
             {
@@ -204,12 +216,14 @@ namespace timerActive
                     Rectangle appRect = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
                     //если мышка над активным окном приложения имя процесса которого inputNameProcces
                     if (appRect.Contains(cursorPosition))
-                    { 
+                    {
                         mouseOverWindow.CheckState = CheckState.Checked;
                         stopwatch.Start();
                         //режим движения мышки вкл/выкл
                         if (mouseMoveMode == true)
                         {
+                            mouseActive.Visible = true;
+                            label3.Visible = true;
                             GetCursorPos(out currentPoint);
                             if ((windowActive.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
                                || (windowActive.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
@@ -224,6 +238,11 @@ namespace timerActive
                             }
                             prevPoint = currentPoint;
                         }
+                        else
+                        {
+                            mouseActive.Visible = false;
+                            label3.Visible = false;
+                        }
                     }
                     else
                     {
@@ -235,6 +254,16 @@ namespace timerActive
             }
             //таймер
             stopWatchLabel.Text = string.Format("{0:hh\\:mm\\:ss\\:fff}", stopwatch.Elapsed);
+            //для времени напоминания и проигрывания звука напоминания
+            timeFix = stopWatchLabel.Text;
+            timeFix = timeFix.Substring(0, timeFix.Length - 4);
+            globalReminder = remindHours + ":" + remindMinutes + ":00";
+            label7.Text = globalReminder;
+            if (timeFix == globalReminder)
+            {
+                GetTotalTimeMethod();
+                soundReminder.Play();
+            }
         }
         //сброс таймера
         private void reset_Click(object sender, EventArgs e)
@@ -387,6 +416,11 @@ namespace timerActive
         //нажатие на кнопку "Get Total Time"
         private void GetTotalTime_Click(object sender, EventArgs e)
         {
+            GetTotalTimeMethod();
+           
+        }
+        void GetTotalTimeMethod()
+        {
             if (stopwatch.ElapsedTicks > 0)
             {
                 string processName = inputProcessName.Text.Trim(); // имя файла, введенное пользователем
@@ -537,6 +571,44 @@ namespace timerActive
             Hide();
             options.Show();
             options.Location = Location;
+        }
+
+        //добавляет время напоминания
+        private void addReminder_Click(object sender, EventArgs e)
+        {
+            if (reminderHours.Value < 10)
+            {
+                remindHours = "0" + reminderHours.Value.ToString();
+            }
+            else
+            {
+                remindHours = reminderHours.Value.ToString();
+            }
+            if (reminderMinutes.Value < 10)
+            {
+                remindMinutes = "0" + reminderMinutes.Value.ToString();
+            }
+            else
+            {
+                remindMinutes = reminderMinutes.Value.ToString();
+            }
+
+            reminderHours.Enabled = false;
+            reminderMinutes.Enabled = false;
+            label5.Enabled = false;
+            label6.Enabled = false;
+            addReminder.Visible = false;
+            changeReminder.Visible = true;
+        }
+        //ддля изменения времени напоминания
+        private void changeReminder_Click(object sender, EventArgs e)
+        {
+            addReminder.Visible = true;
+            changeReminder.Visible = false;
+            reminderHours.Enabled = true;
+            reminderMinutes.Enabled = true;
+            label5.Enabled = true;
+            label6.Enabled = true;
         }
     }
 }
