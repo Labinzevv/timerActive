@@ -117,7 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="ruText.Text" xml:space="preserve">
+    <value>Эта программа предназначена для
+отслеживания времени, проведенного
+в указанном приложении. В поле
+"Add project" введите название
+вашего проекта, в поле 
+"Add process" введите название
+процесса приложения, который
+вы хотите отслеживать.
+(Вы можете найти название процесса в
+строке "Process" после того,
+как активируете окно приложения
+название процесса, которого
+вы хотите узнать).
+Вы также можете изменить режим
+работы приложения:
+"Active mouse mode" и
+"Active window mode".
+При нажатии кнопки "Get the total time",
+общее время всех сеансов,
+проведенных в отслеживаемом
+приложении, отобразится
+в нижнем таймере.
+Кнопка "Reset" сбрасывает общее
+время всех сеансов, проведенных
+в отслеживаемом приложении.
+Кроме того, когда вы нажмете на кнопку
+"Add new process", будет
+добавлено новое окно, в котором вы
+сможете отслеживать
+другое приложение.
+При закрытии, время проведенное в
+отслеживаемом приложении,
+будет сохранено.
+Чтобы продолжить отслеживание,
+просто выберите уже сохраненный
+проект и процесс 
+в выпадающих меню.
+Таймер начнет работу автоматически,
+как только окно отслеживаемого
+приложения станет активным.
+Чтобы установить таймер напоминания,
+введите количество часов в поле "Hour",
+введите количество 
+минут в поле "Minute"
+и подтвердите нажатием кнопки
+"Add reminder".
+Когда таймер напоминания истечет, вы
+услышите звуковой сигнал,
+и прошедшее время будет добавлено
+к общему времени.
+
+
+ShivaMultiHand Labinzevv ©
+</value>
+  </data>
+  <data name="enText.Text" xml:space="preserve">
     <value>This program is designed to monitor the time
 spent in the specified application. In the
 "Add Project" field, enter the name of your
@@ -149,6 +205,13 @@ drop-down menus.
 The timer will trigger automatically as soon
 as the window of the monitored application
 becomes active.
+to set the reminder timer, enter the number
+of hours in the "Hour" field, enter the
+number of minutes in the "Minute" field and
+confirm with the "Add reminder" button.
+When the reminder timer expires, you will
+hear a beep, and the elapsed time will
+be added to the total time.
 
 ShivaMultiHand Labinzevv ©
 

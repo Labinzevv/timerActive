@@ -13,9 +13,13 @@ namespace timerActive
 {
     public partial class Options : Form
     {
+        string en = "En";
+        string ru = "Ru";
+
         public Options()
         {
             InitializeComponent();
+            language.SelectedItem = "En";
         }
       
         private void Options_Load(object sender, EventArgs e)
@@ -30,6 +34,20 @@ namespace timerActive
             {
                 timerActive.Show();
                 timerActive.Location = Location;
+            }
+        }
+
+        private void language_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (language.SelectedItem.ToString() == en)
+            {
+                enText.Visible = true;
+                ruText.Visible = false;
+            }
+            if (language.SelectedItem.ToString() == ru)
+            {
+                enText.Visible = false;
+                ruText.Visible = true;
             }
         }
     }

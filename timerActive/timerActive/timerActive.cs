@@ -89,6 +89,7 @@ namespace timerActive
             InitializeComponent();
             LoadComboBoxValues();
             soundReminder = new SoundPlayer("din.wav");
+            time.Text = "";
 
             if (sequenceProcesses == false)
             {
@@ -145,7 +146,7 @@ namespace timerActive
             long totalTicks = savedTicks + stopwatch.ElapsedTicks;
             File.WriteAllText(filePath, totalTicks.ToString());
             TimeSpan totalTime = new TimeSpan(totalTicks);
-            globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+            globalTimer.Text = totalTime.ToString("dd':'hh':'mm':'ss");
         }
         //метод таймера
         private void timer_Tick(object sender, EventArgs e)
@@ -156,11 +157,11 @@ namespace timerActive
             //GetWindowText(handle, windowTitle, 256);
             //if (windowTitle.ToString() == "Часы")
             //{
-            //    label1.Text = "Калькулятор активен";
+            //    label1.Text = "активен";
             //}
             //else
             //{
-            //    label1.Text = "Калькулятор неактивен";
+            //    label1.Text = "неактивен";
             //}
 
             //возвращает window title
@@ -257,8 +258,8 @@ namespace timerActive
             //для времени напоминания и проигрывания звука напоминания
             timeFix = stopWatchLabel.Text;
             timeFix = timeFix.Substring(0, timeFix.Length - 4);
-            globalReminder = remindHours + ":" + remindMinutes + ":00";
-            label7.Text = globalReminder;
+          
+
             if (timeFix == globalReminder)
             {
                 GetTotalTimeMethod();
@@ -282,7 +283,7 @@ namespace timerActive
                 stopwatch.Reset();
                 //перезаписывает содержимое файла с именем, которое введено в comboBox + ".txt"
                 File.WriteAllText(filePath, "");
-                globalTimer.Text = "00:00:00";
+                globalTimer.Text = "00:00:00:00";
             }
         }
         //сохранение таймера
@@ -349,7 +350,6 @@ namespace timerActive
                 SaveElapsedTime();
             }
             //метод сохранения введенных в comboBox данных
-            SaveComboBoxValues();
         }
         
         private void LoadComboBoxValues()
@@ -428,8 +428,6 @@ namespace timerActive
                 string folderPath = Path.Combine(Application.StartupPath, projectFolder); // создает путь к папке
                 string filePath = Path.Combine(folderPath, processName); // создаем путь к файлу
                 filePath = filePath + ".txt";
-
-                //filePath = inputNameProcces + ".txt";
                 long savedTicks = 0;
                 if (File.Exists(filePath))
                 {
@@ -439,7 +437,7 @@ namespace timerActive
                 long totalTicks = savedTicks + stopwatch.ElapsedTicks;
                 File.WriteAllText(filePath, totalTicks.ToString());
                 TimeSpan totalTime = new TimeSpan(totalTicks);
-                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+                globalTimer.Text = totalTime.ToString("dd':'hh':'mm':'ss");
                 stopwatch.Reset();
             }
         }
@@ -477,12 +475,12 @@ namespace timerActive
                 long.TryParse(savedTimeStr, out savedTicks);
                 long totalTicks = savedTicks + stopwatch.ElapsedTicks;
                 TimeSpan totalTime = new TimeSpan(totalTicks);
-                globalTimer.Text = totalTime.ToString("hh':'mm':'ss");
+                globalTimer.Text = totalTime.ToString("dd':'hh':'mm':'ss");
             }
             else
             {
                 //создание файла процесса
-                File.Create(filePath + ".txt").Close();
+                File.Create(filePath + ".txt").Close(); 
             }
             filePath = "empty.txt";
 
@@ -492,6 +490,8 @@ namespace timerActive
                 addProcess.Enabled = false;
             }
             inputNameProcces = inputProcessName.Text;
+
+            SaveComboBoxValues();
         }
 
         //режимы работы программы (mouse moving mode, active window mode)
@@ -545,6 +545,8 @@ namespace timerActive
 
             addProcess.Enabled = true;
             inputProcessName.Enabled = true;
+
+            SaveComboBoxValues();
         }
 
         //изменить проект и процесс
@@ -576,29 +578,34 @@ namespace timerActive
         //добавляет время напоминания
         private void addReminder_Click(object sender, EventArgs e)
         {
-            if (reminderHours.Value < 10)
+            if (reminderMinutes.Value > 0)
             {
-                remindHours = "0" + reminderHours.Value.ToString();
-            }
-            else
-            {
-                remindHours = reminderHours.Value.ToString();
-            }
-            if (reminderMinutes.Value < 10)
-            {
-                remindMinutes = "0" + reminderMinutes.Value.ToString();
-            }
-            else
-            {
-                remindMinutes = reminderMinutes.Value.ToString();
-            }
+                if (reminderHours.Value < 10)
+                {
+                    remindHours = "0" + reminderHours.Value.ToString();
+                }
+                else
+                {
+                    remindHours = reminderHours.Value.ToString();
+                }
+                if (reminderMinutes.Value < 10)
+                {
+                    remindMinutes = "0" + reminderMinutes.Value.ToString();
+                }
+                else
+                {
+                    remindMinutes = reminderMinutes.Value.ToString();
+                }
+                globalReminder = remindHours + ":" + remindMinutes + ":00";
+                time.Text = globalReminder;
 
-            reminderHours.Enabled = false;
-            reminderMinutes.Enabled = false;
-            label5.Enabled = false;
-            label6.Enabled = false;
-            addReminder.Visible = false;
-            changeReminder.Visible = true;
+                reminderHours.Enabled = false;
+                reminderMinutes.Enabled = false;
+                label5.Enabled = false;
+                label6.Enabled = false;
+                addReminder.Visible = false;
+                changeReminder.Visible = true;
+            }
         }
         //ддля изменения времени напоминания
         private void changeReminder_Click(object sender, EventArgs e)

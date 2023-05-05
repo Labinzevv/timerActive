@@ -57,7 +57,7 @@
             this.activeTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.time = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.mouseOverWindow = new System.Windows.Forms.CheckBox();
@@ -67,6 +67,7 @@
             this.activeWindowMode = new System.Windows.Forms.CheckBox();
             this.activeMouseMode = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -159,7 +160,7 @@
             // 
             resources.ApplyResources(this.reminderHours, "reminderHours");
             this.reminderHours.Maximum = new decimal(new int[] {
-            59,
+            23,
             0,
             0,
             0});
@@ -254,7 +255,7 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.time);
             this.panel2.Controls.Add(this.activeProcess);
             this.panel2.Controls.Add(this.activeTitle);
             resources.ApplyResources(this.panel2, "panel2");
@@ -265,10 +266,10 @@
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
             // 
-            // label7
+            // time
             // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
+            resources.ApplyResources(this.time, "time");
+            this.time.Name = "time";
             // 
             // panel3
             // 
@@ -332,10 +333,16 @@
             this.options.UseVisualStyleBackColor = true;
             this.options.Click += new System.EventHandler(this.options_Click);
             // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
             // TimerActive
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.options);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label1);
@@ -402,9 +409,10 @@
         private System.Windows.Forms.NumericUpDown reminderMinutes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown reminderHours;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label time;
         private System.Windows.Forms.Button changeReminder;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
 
