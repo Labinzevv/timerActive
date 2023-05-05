@@ -75,6 +75,8 @@ namespace timerActive
         bool mouseMoveMode = true;
         //для последовательности ввода данных(сначала имя проекта потом имя процесса)
         bool sequenceProcesses = false;
+        //для активации/деактивации работы таймера
+        bool activeTimer = true;
 
         //для времени напоминания
         string remindHours;
@@ -164,106 +166,110 @@ namespace timerActive
             //    label1.Text = "неактивен";
             //}
 
-            //возвращает window title
-            IntPtr handleTitle = GetForegroundWindow();
-            StringBuilder windowTitle = new StringBuilder(256);
-            GetWindowText(handleTitle, windowTitle, 256);
-            activeTitle.Text = windowTitle.ToString();
-
-            //возвращает имя процесса
-            IntPtr handleProc = GetForegroundWindow();
-            GetWindowThreadProcessId(handleProc, out uint pid);
-            Process p = Process.GetProcessById((int)pid);
-            activeProcess.Text = $"{p.ProcessName}";
-
-            //отслеживает активное окно
-            IntPtr hWnd = GetForegroundWindow();
-
-            int processId;
-            GetWindowThreadProcessId(hWnd, out processId);
-            Process process = Process.GetProcessById(processId);
-
-            if (hWnd != IntPtr.Zero)
+            //активирует/деактивирует работу таймера
+            if (activeTimer == true)
             {
-               
-                //inputNameProcces - имя процесса
-                if (process.ProcessName == inputNameProcces)
+                //возвращает window title
+                IntPtr handleTitle = GetForegroundWindow();
+                StringBuilder windowTitle = new StringBuilder(256);
+                GetWindowText(handleTitle, windowTitle, 256);
+                activeTitle.Text = windowTitle.ToString();
+
+                //возвращает имя процесса
+                IntPtr handleProc = GetForegroundWindow();
+                GetWindowThreadProcessId(handleProc, out uint pid);
+                Process p = Process.GetProcessById((int)pid);
+                activeProcess.Text = $"{p.ProcessName}";
+
+                //отслеживает активное окно
+                IntPtr hWnd = GetForegroundWindow();
+
+                int processId;
+                GetWindowThreadProcessId(hWnd, out processId);
+                Process process = Process.GetProcessById(processId);
+
+                if (hWnd != IntPtr.Zero)
                 {
-                    windowActive.CheckState = CheckState.Checked;
-                    stopwatch.Start();
+
+                    //inputNameProcces - имя процесса
+                    if (process.ProcessName == inputNameProcces)
+                    {
+                        windowActive.CheckState = CheckState.Checked;
+                        stopwatch.Start();
+                    }
+                    else
+                    {
+                        windowActive.CheckState = CheckState.Unchecked;
+                        stopwatch.Stop();
+                    }
                 }
                 else
                 {
                     windowActive.CheckState = CheckState.Unchecked;
                     stopwatch.Stop();
                 }
-            }
-            else
-            {
-                windowActive.CheckState = CheckState.Unchecked;
-                stopwatch.Stop();
-            }
 
-            //отслеживает находится ли курсор мышки над активным 
-            //окном приложения имя процесса которого inputNameProcces
-            IntPtr mouseToActiveWinProc = GetForegroundWindow();
-            RECT rect;
-            Point cursorPosition = Cursor.Position;
-            POINT currentPoint;
-            if (process.ProcessName == inputNameProcces)
-            {
-                if (GetWindowRect(mouseToActiveWinProc, out rect))
+                //отслеживает находится ли курсор мышки над активным 
+                //окном приложения имя процесса которого inputNameProcces
+                IntPtr mouseToActiveWinProc = GetForegroundWindow();
+                RECT rect;
+                Point cursorPosition = Cursor.Position;
+                POINT currentPoint;
+                if (process.ProcessName == inputNameProcces)
                 {
-                    Rectangle appRect = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
-                    //если мышка над активным окном приложения имя процесса которого inputNameProcces
-                    if (appRect.Contains(cursorPosition))
+                    if (GetWindowRect(mouseToActiveWinProc, out rect))
                     {
-                        mouseOverWindow.CheckState = CheckState.Checked;
-                        stopwatch.Start();
-                        //режим движения мышки вкл/выкл
-                        if (mouseMoveMode == true)
+                        Rectangle appRect = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
+                        //если мышка над активным окном приложения имя процесса которого inputNameProcces
+                        if (appRect.Contains(cursorPosition))
                         {
-                            mouseActive.Visible = true;
-                            label3.Visible = true;
-                            GetCursorPos(out currentPoint);
-                            if ((windowActive.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
-                               || (windowActive.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
+                            mouseOverWindow.CheckState = CheckState.Checked;
+                            stopwatch.Start();
+                            //режим движения мышки вкл/выкл
+                            if (mouseMoveMode == true)
                             {
-                                mouseActive.CheckState = CheckState.Checked;
-                                stopwatch.Start();
+                                mouseActive.Visible = true;
+                                label3.Visible = true;
+                                GetCursorPos(out currentPoint);
+                                if ((windowActive.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
+                                   || (windowActive.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
+                                {
+                                    mouseActive.CheckState = CheckState.Checked;
+                                    stopwatch.Start();
+                                }
+                                else
+                                {
+                                    mouseActive.CheckState = CheckState.Unchecked;
+                                    stopwatch.Stop();
+                                }
+                                prevPoint = currentPoint;
                             }
                             else
                             {
-                                mouseActive.CheckState = CheckState.Unchecked;
-                                stopwatch.Stop();
+                                mouseActive.Visible = false;
+                                label3.Visible = false;
                             }
-                            prevPoint = currentPoint;
                         }
                         else
                         {
-                            mouseActive.Visible = false;
-                            label3.Visible = false;
+                            mouseActive.CheckState = CheckState.Unchecked;
+                            mouseOverWindow.CheckState = CheckState.Unchecked;
+                            stopwatch.Stop();
                         }
                     }
-                    else
-                    {
-                        mouseActive.CheckState = CheckState.Unchecked;
-                        mouseOverWindow.CheckState = CheckState.Unchecked;
-                        stopwatch.Stop();
-                    }
                 }
-            }
-            //таймер
-            stopWatchLabel.Text = string.Format("{0:hh\\:mm\\:ss\\:fff}", stopwatch.Elapsed);
-            //для времени напоминания и проигрывания звука напоминания
-            timeFix = stopWatchLabel.Text;
-            timeFix = timeFix.Substring(0, timeFix.Length - 4);
-          
+                //таймер
+                stopWatchLabel.Text = string.Format("{0:hh\\:mm\\:ss\\:fff}", stopwatch.Elapsed);
+                //для времени напоминания и проигрывания звука напоминания
+                timeFix = stopWatchLabel.Text;
+                timeFix = timeFix.Substring(0, timeFix.Length - 4);
 
-            if (timeFix == globalReminder)
-            {
-                GetTotalTimeMethod();
-                soundReminder.Play();
+
+                if (timeFix == globalReminder)
+                {
+                    GetTotalTimeMethod();
+                    soundReminder.Play();
+                }
             }
         }
         //сброс таймера
@@ -607,7 +613,7 @@ namespace timerActive
                 changeReminder.Visible = true;
             }
         }
-        //ддля изменения времени напоминания
+        //для изменения времени напоминания
         private void changeReminder_Click(object sender, EventArgs e)
         {
             addReminder.Visible = true;
@@ -616,6 +622,26 @@ namespace timerActive
             reminderMinutes.Enabled = true;
             label5.Enabled = true;
             label6.Enabled = true;
+        }
+        //для активации/деактивации работы таймера
+        private void activeTimer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (activeTimerCheck.CheckState == CheckState.Checked)
+            {
+                activeTimer = true;
+                activeWindowMode.CheckState = CheckState.Checked;
+                activeMouseMode.CheckState = CheckState.Checked;
+                activeMouseMode.Enabled = true;
+                activeWindowMode.Enabled = true;
+            }
+            else
+            {
+                activeTimer = false;
+                activeMouseMode.CheckState = CheckState.Unchecked;
+                activeWindowMode.CheckState = CheckState.Unchecked;
+                activeMouseMode.Enabled = false;
+                activeWindowMode.Enabled = false;
+            }
         }
     }
 }

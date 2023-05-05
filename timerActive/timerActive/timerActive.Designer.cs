@@ -68,6 +68,7 @@
             this.activeMouseMode = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.activeTimerCheck = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -309,6 +310,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.activeWindowMode);
             this.panel4.Controls.Add(this.activeMouseMode);
+            this.panel4.Controls.Add(this.activeTimerCheck);
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
@@ -337,6 +339,15 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
+            // 
+            // activeTimerCheck
+            // 
+            resources.ApplyResources(this.activeTimerCheck, "activeTimerCheck");
+            this.activeTimerCheck.Checked = true;
+            this.activeTimerCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.activeTimerCheck.Name = "activeTimerCheck";
+            this.activeTimerCheck.UseVisualStyleBackColor = true;
+            this.activeTimerCheck.CheckedChanged += new System.EventHandler(this.activeTimer_CheckedChanged);
             // 
             // TimerActive
             // 
@@ -413,6 +424,7 @@
         private System.Windows.Forms.Button changeReminder;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox activeTimerCheck;
     }
 }
 
