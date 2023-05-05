@@ -121,33 +121,33 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Active.AutoSize" type="System.Boolean, mscorlib">
+  <data name="windowActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Active.Enabled" type="System.Boolean, mscorlib">
+  <data name="windowActive.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Active.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
+  <data name="windowActive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 1</value>
   </data>
-  <data name="Active.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="windowActive.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
   </data>
-  <data name="Active.TabIndex" type="System.Int32, mscorlib">
+  <data name="windowActive.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;Active.Name" xml:space="preserve">
-    <value>Active</value>
+  <data name="&gt;&gt;windowActive.Name" xml:space="preserve">
+    <value>windowActive</value>
   </data>
-  <data name="&gt;&gt;Active.Type" xml:space="preserve">
+  <data name="&gt;&gt;windowActive.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Active.Parent" xml:space="preserve">
+  <data name="&gt;&gt;windowActive.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="&gt;&gt;Active.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;windowActive.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="reset.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 284</value>
@@ -203,32 +203,32 @@
   <data name="&gt;&gt;stopWatchLabel.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="checkMouse.AutoSize" type="System.Boolean, mscorlib">
+  <data name="mouseActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkMouse.Enabled" type="System.Boolean, mscorlib">
+  <data name="mouseActive.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="checkMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 26</value>
+  <data name="mouseActive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 15</value>
   </data>
-  <data name="checkMouse.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mouseActive.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 14</value>
   </data>
-  <data name="checkMouse.TabIndex" type="System.Int32, mscorlib">
+  <data name="mouseActive.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;checkMouse.Name" xml:space="preserve">
-    <value>checkMouse</value>
+  <data name="&gt;&gt;mouseActive.Name" xml:space="preserve">
+    <value>mouseActive</value>
   </data>
-  <data name="&gt;&gt;checkMouse.Type" xml:space="preserve">
+  <data name="&gt;&gt;mouseActive.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkMouse.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mouseActive.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="&gt;&gt;checkMouse.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;mouseActive.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="globalTimer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -291,7 +291,7 @@
     <value>6</value>
   </data>
   <data name="inputProcessName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>91, 141</value>
+    <value>91, 140</value>
   </data>
   <data name="inputProcessName.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 21</value>
@@ -404,6 +404,9 @@
   <data name="&gt;&gt;inputProjectName.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="addProcess.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="addProcess.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 47</value>
   </data>
@@ -429,7 +432,7 @@
     <value>4</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 92</value>
+    <value>3, 91</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 73</value>
@@ -602,24 +605,81 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 29</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Mouse over win</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="mouseOverWindow.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mouseOverWindow.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="mouseOverWindow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="mouseOverWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 29</value>
+  </data>
+  <data name="mouseOverWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>15, 14</value>
+  </data>
+  <data name="mouseOverWindow.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;mouseOverWindow.Name" xml:space="preserve">
+    <value>mouseOverWindow</value>
+  </data>
+  <data name="&gt;&gt;mouseOverWindow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mouseOverWindow.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;mouseOverWindow.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 26</value>
+    <value>14, 15</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+    <value>71, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Check mouse</value>
+    <value>Mouse active</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -631,22 +691,22 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 5</value>
+    <value>14, 1</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
+    <value>78, 13</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Active</value>
+    <value>Window active</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -658,13 +718,13 @@
     <value>panel3</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 44</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 46</value>
+    <value>96, 45</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -708,38 +768,38 @@
   <data name="&gt;&gt;activeWindowMode.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="mouseMovingMode.AutoSize" type="System.Boolean, mscorlib">
+  <data name="activeMouseMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="mouseMovingMode.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="activeMouseMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 4</value>
   </data>
-  <data name="mouseMovingMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 17</value>
+  <data name="activeMouseMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
   </data>
-  <data name="mouseMovingMode.TabIndex" type="System.Int32, mscorlib">
+  <data name="activeMouseMode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="mouseMovingMode.Text" xml:space="preserve">
-    <value>Mouse moving mode</value>
+  <data name="activeMouseMode.Text" xml:space="preserve">
+    <value>Active mouse mode</value>
   </data>
-  <data name="&gt;&gt;mouseMovingMode.Name" xml:space="preserve">
-    <value>mouseMovingMode</value>
+  <data name="&gt;&gt;activeMouseMode.Name" xml:space="preserve">
+    <value>activeMouseMode</value>
   </data>
-  <data name="&gt;&gt;mouseMovingMode.Type" xml:space="preserve">
+  <data name="&gt;&gt;activeMouseMode.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mouseMovingMode.Parent" xml:space="preserve">
+  <data name="&gt;&gt;activeMouseMode.Parent" xml:space="preserve">
     <value>panel4</value>
   </data>
-  <data name="&gt;&gt;mouseMovingMode.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;activeMouseMode.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="panel4.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 44</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 46</value>
+    <value>127, 45</value>
   </data>
   <data name="panel4.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>

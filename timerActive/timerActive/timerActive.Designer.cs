@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimerActive));
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.Active = new System.Windows.Forms.CheckBox();
+            this.windowActive = new System.Windows.Forms.CheckBox();
             this.reset = new System.Windows.Forms.Button();
             this.stopWatchLabel = new System.Windows.Forms.Label();
-            this.checkMouse = new System.Windows.Forms.CheckBox();
+            this.mouseActive = new System.Windows.Forms.CheckBox();
             this.globalTimer = new System.Windows.Forms.Label();
             this.totalTime = new System.Windows.Forms.Label();
             this.inputProcessName = new System.Windows.Forms.ComboBox();
@@ -51,12 +51,14 @@
             this.activeTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.activeWindowMode = new System.Windows.Forms.CheckBox();
-            this.mouseMovingMode = new System.Windows.Forms.CheckBox();
+            this.activeMouseMode = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.mouseOverWindow = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,11 +70,11 @@
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // Active
+            // windowActive
             // 
-            resources.ApplyResources(this.Active, "Active");
-            this.Active.Name = "Active";
-            this.Active.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.windowActive, "windowActive");
+            this.windowActive.Name = "windowActive";
+            this.windowActive.UseVisualStyleBackColor = true;
             // 
             // reset
             // 
@@ -88,11 +90,11 @@
             this.stopWatchLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.stopWatchLabel.Name = "stopWatchLabel";
             // 
-            // checkMouse
+            // mouseActive
             // 
-            resources.ApplyResources(this.checkMouse, "checkMouse");
-            this.checkMouse.Name = "checkMouse";
-            this.checkMouse.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.mouseActive, "mouseActive");
+            this.mouseActive.Name = "mouseActive";
+            this.mouseActive.UseVisualStyleBackColor = true;
             // 
             // globalTimer
             // 
@@ -197,18 +199,30 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.mouseOverWindow);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.Active);
-            this.panel3.Controls.Add(this.checkMouse);
+            this.panel3.Controls.Add(this.windowActive);
+            this.panel3.Controls.Add(this.mouseActive);
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.activeWindowMode);
-            this.panel4.Controls.Add(this.mouseMovingMode);
+            this.panel4.Controls.Add(this.activeMouseMode);
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
@@ -219,12 +233,12 @@
             this.activeWindowMode.UseVisualStyleBackColor = true;
             this.activeWindowMode.CheckedChanged += new System.EventHandler(this.activeWindowMode_CheckedChanged);
             // 
-            // mouseMovingMode
+            // activeMouseMode
             // 
-            resources.ApplyResources(this.mouseMovingMode, "mouseMovingMode");
-            this.mouseMovingMode.Name = "mouseMovingMode";
-            this.mouseMovingMode.UseVisualStyleBackColor = true;
-            this.mouseMovingMode.CheckedChanged += new System.EventHandler(this.mouseMovingMode_CheckedChanged);
+            resources.ApplyResources(this.activeMouseMode, "activeMouseMode");
+            this.activeMouseMode.Name = "activeMouseMode";
+            this.activeMouseMode.UseVisualStyleBackColor = true;
+            this.activeMouseMode.CheckedChanged += new System.EventHandler(this.mouseMovingMode_CheckedChanged);
             // 
             // options
             // 
@@ -233,15 +247,16 @@
             this.options.UseVisualStyleBackColor = true;
             this.options.Click += new System.EventHandler(this.options_Click);
             // 
-            // label2
+            // mouseOverWindow
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.mouseOverWindow, "mouseOverWindow");
+            this.mouseOverWindow.Name = "mouseOverWindow";
+            this.mouseOverWindow.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // label4
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // TimerActive
             // 
@@ -277,10 +292,10 @@
 
         #endregion
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.CheckBox Active;
+        private System.Windows.Forms.CheckBox windowActive;
         private System.Windows.Forms.Button reset;
         private System.Windows.Forms.Label stopWatchLabel;
-        private System.Windows.Forms.CheckBox checkMouse;
+        private System.Windows.Forms.CheckBox mouseActive;
         private System.Windows.Forms.Label globalTimer;
         private System.Windows.Forms.Label totalTime;
         private System.Windows.Forms.ComboBox inputProcessName;
@@ -295,7 +310,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.CheckBox activeWindowMode;
-        private System.Windows.Forms.CheckBox mouseMovingMode;
+        private System.Windows.Forms.CheckBox activeMouseMode;
         private System.Windows.Forms.ComboBox inputProjectName;
         private System.Windows.Forms.Button addProject;
         private System.Windows.Forms.Button addNewProcess;
@@ -303,6 +318,8 @@
         private System.Windows.Forms.Button changeProject;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox mouseOverWindow;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -29,6 +29,7 @@ namespace timerActive
             if (timerActive != null)
             {
                 timerActive.Show();
+                timerActive.Location = Location;
             }
         }
     }
