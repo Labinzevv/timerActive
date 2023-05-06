@@ -66,9 +66,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.activeWindowMode = new System.Windows.Forms.CheckBox();
             this.activeMouseMode = new System.Windows.Forms.CheckBox();
+            this.activeTimerCheck = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.activeTimerCheck = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -328,6 +328,15 @@
             this.activeMouseMode.UseVisualStyleBackColor = true;
             this.activeMouseMode.CheckedChanged += new System.EventHandler(this.mouseMovingMode_CheckedChanged);
             // 
+            // activeTimerCheck
+            // 
+            resources.ApplyResources(this.activeTimerCheck, "activeTimerCheck");
+            this.activeTimerCheck.Checked = true;
+            this.activeTimerCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.activeTimerCheck.Name = "activeTimerCheck";
+            this.activeTimerCheck.UseVisualStyleBackColor = true;
+            this.activeTimerCheck.CheckedChanged += new System.EventHandler(this.activeTimer_CheckedChanged);
+            // 
             // options
             // 
             resources.ApplyResources(this.options, "options");
@@ -339,15 +348,6 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            // 
-            // activeTimerCheck
-            // 
-            resources.ApplyResources(this.activeTimerCheck, "activeTimerCheck");
-            this.activeTimerCheck.Checked = true;
-            this.activeTimerCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activeTimerCheck.Name = "activeTimerCheck";
-            this.activeTimerCheck.UseVisualStyleBackColor = true;
-            this.activeTimerCheck.CheckedChanged += new System.EventHandler(this.activeTimer_CheckedChanged);
             // 
             // TimerActive
             // 
