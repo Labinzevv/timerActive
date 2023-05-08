@@ -221,8 +221,6 @@ namespace timerActive
                             //режим движения мышки вкл/выкл
                             if (mouseMoveMode == true)
                             {
-                                mouseActive.Visible = true;
-                                label3.Visible = true;
                                 GetCursorPos(out currentPoint);
                                 if ((windowActive.CheckState == CheckState.Checked && currentPoint.x != prevPoint.x)
                                    || (windowActive.CheckState == CheckState.Checked && currentPoint.y != prevPoint.y))
@@ -236,11 +234,6 @@ namespace timerActive
                                     stopwatch.Stop();
                                 }
                                 prevPoint = currentPoint;
-                            }
-                            else
-                            {
-                                mouseActive.Visible = false;
-                                label3.Visible = false;
                             }
                         }
                         else
@@ -479,11 +472,13 @@ namespace timerActive
         {
             if (activeMouseMode.CheckState == CheckState.Checked)
             {
+                mouseActive.Visible = true;
                 activeWindowMode.CheckState = CheckState.Unchecked;
                 mouseMoveMode = true;
             }
             if (activeMouseMode.CheckState == CheckState.Unchecked)
             {
+                mouseActive.Visible = false;
                 activeWindowMode.CheckState = CheckState.Checked;
                 mouseMoveMode = false;
             }
@@ -562,6 +557,15 @@ namespace timerActive
             Hide();
             options.Show();
             options.Location = Location;
+
+            if (alwaysOnTop.CheckState == CheckState.Checked)
+            {
+                options.TopMost = true;
+            }
+            else
+            {
+                options.TopMost = false;
+            }
         }
 
         //добавляет время напоминания
@@ -590,7 +594,9 @@ namespace timerActive
 
                 reminderHours.Enabled = false;
                 reminderMinutes.Enabled = false;
+                label5.BackColor = Color.FromArgb(240, 240, 240);
                 label5.Enabled = false;
+                label6.BackColor = Color.FromArgb(240, 240, 240);
                 label6.Enabled = false;
                 addReminder.Visible = false;
                 changeReminder.Visible = true;
@@ -603,7 +609,9 @@ namespace timerActive
             changeReminder.Visible = false;
             reminderHours.Enabled = true;
             reminderMinutes.Enabled = true;
+            label5.BackColor = Color.White;
             label5.Enabled = true;
+            label6.BackColor = Color.White;
             label6.Enabled = true;
         }
         //для активации/деактивации работы таймера
@@ -625,6 +633,40 @@ namespace timerActive
                 activeMouseMode.Enabled = false;
                 activeWindowMode.Enabled = false;
             }
+        }
+
+        private void alwaysOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (alwaysOnTop.CheckState == CheckState.Checked)
+            {
+                TopMost = true;
+            }
+            else
+            {
+                TopMost = false;
+            }
+        }
+
+        private void rollUp_CheckedChanged(object sender, EventArgs e)
+        {
+            rollUp.CheckState = CheckState.Unchecked;
+            unwrap.CheckState = CheckState.Unchecked;
+            MinimumSize = new Size(234, 42);
+            MaximumSize = new Size(234, 42);
+            Size = new Size(234, 42);
+            FormBorderStyle = FormBorderStyle.None;
+            unwrap.Visible = true;
+        }
+
+        private void unwrap_CheckedChanged(object sender, EventArgs e)
+        {
+            rollUp.CheckState = CheckState.Unchecked;
+            unwrap.CheckState = CheckState.Unchecked;
+            MinimumSize = new Size(250, 425);
+            MaximumSize = new Size(250, 425);
+            Size = new Size(250, 425);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            unwrap.Visible = false;
         }
     }
 }

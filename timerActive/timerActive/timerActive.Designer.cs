@@ -61,14 +61,15 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.mouseOverWindow = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.activeWindowMode = new System.Windows.Forms.CheckBox();
             this.activeMouseMode = new System.Windows.Forms.CheckBox();
             this.activeTimerCheck = new System.Windows.Forms.CheckBox();
+            this.alwaysOnTop = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.rollUp = new System.Windows.Forms.CheckBox();
+            this.unwrap = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -134,6 +135,7 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.reminderHours);
             this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.inputProcessName);
             this.panel1.Controls.Add(this.reminderMinutes);
             this.panel1.Controls.Add(this.addReminder);
             this.panel1.Controls.Add(this.changeProject);
@@ -259,6 +261,8 @@
             this.panel2.Controls.Add(this.time);
             this.panel2.Controls.Add(this.activeProcess);
             this.panel2.Controls.Add(this.activeTitle);
+            this.panel2.Controls.Add(this.label);
+            this.panel2.Controls.Add(this.label1);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
@@ -275,12 +279,11 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.rollUp);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.mouseOverWindow);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.windowActive);
             this.panel3.Controls.Add(this.mouseActive);
+            this.panel3.Controls.Add(this.windowActive);
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
@@ -295,22 +298,13 @@
             this.mouseOverWindow.Name = "mouseOverWindow";
             this.mouseOverWindow.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.activeWindowMode);
             this.panel4.Controls.Add(this.activeMouseMode);
             this.panel4.Controls.Add(this.activeTimerCheck);
+            this.panel4.Controls.Add(this.alwaysOnTop);
             resources.ApplyResources(this.panel4, "panel4");
             this.panel4.Name = "panel4";
             // 
@@ -337,6 +331,13 @@
             this.activeTimerCheck.UseVisualStyleBackColor = true;
             this.activeTimerCheck.CheckedChanged += new System.EventHandler(this.activeTimer_CheckedChanged);
             // 
+            // alwaysOnTop
+            // 
+            resources.ApplyResources(this.alwaysOnTop, "alwaysOnTop");
+            this.alwaysOnTop.Name = "alwaysOnTop";
+            this.alwaysOnTop.UseVisualStyleBackColor = true;
+            this.alwaysOnTop.CheckedChanged += new System.EventHandler(this.alwaysOnTop_CheckedChanged);
+            // 
             // options
             // 
             resources.ApplyResources(this.options, "options");
@@ -349,17 +350,29 @@
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
+            // rollUp
+            // 
+            resources.ApplyResources(this.rollUp, "rollUp");
+            this.rollUp.Name = "rollUp";
+            this.rollUp.UseVisualStyleBackColor = true;
+            this.rollUp.CheckedChanged += new System.EventHandler(this.rollUp_CheckedChanged);
+            // 
+            // unwrap
+            // 
+            resources.ApplyResources(this.unwrap, "unwrap");
+            this.unwrap.Name = "unwrap";
+            this.unwrap.UseVisualStyleBackColor = true;
+            this.unwrap.CheckedChanged += new System.EventHandler(this.unwrap_CheckedChanged);
+            // 
             // TimerActive
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.unwrap);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.options);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label);
             this.Controls.Add(this.GetTotalTime);
-            this.Controls.Add(this.inputProcessName);
             this.Controls.Add(this.totalTime);
             this.Controls.Add(this.globalTimer);
             this.Controls.Add(this.stopWatchLabel);
@@ -411,8 +424,6 @@
         private System.Windows.Forms.Button addNewProcess;
         private System.Windows.Forms.Button options;
         private System.Windows.Forms.Button changeProject;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox mouseOverWindow;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button addReminder;
@@ -425,6 +436,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox activeTimerCheck;
+        private System.Windows.Forms.CheckBox alwaysOnTop;
+        private System.Windows.Forms.CheckBox rollUp;
+        private System.Windows.Forms.CheckBox unwrap;
     }
 }
 
