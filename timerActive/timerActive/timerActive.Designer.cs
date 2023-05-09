@@ -59,6 +59,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.time = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.rollUp = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.mouseOverWindow = new System.Windows.Forms.CheckBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -68,7 +69,6 @@
             this.alwaysOnTop = new System.Windows.Forms.CheckBox();
             this.options = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.rollUp = new System.Windows.Forms.CheckBox();
             this.unwrap = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
@@ -287,6 +287,13 @@
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
+            // rollUp
+            // 
+            resources.ApplyResources(this.rollUp, "rollUp");
+            this.rollUp.Name = "rollUp";
+            this.rollUp.UseVisualStyleBackColor = true;
+            this.rollUp.CheckedChanged += new System.EventHandler(this.rollUp_CheckedChanged);
+            // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
@@ -349,13 +356,6 @@
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            // 
-            // rollUp
-            // 
-            resources.ApplyResources(this.rollUp, "rollUp");
-            this.rollUp.Name = "rollUp";
-            this.rollUp.UseVisualStyleBackColor = true;
-            this.rollUp.CheckedChanged += new System.EventHandler(this.rollUp_CheckedChanged);
             // 
             // unwrap
             // 

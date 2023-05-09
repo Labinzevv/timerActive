@@ -647,13 +647,16 @@ namespace timerActive
             }
         }
 
+        Font fontSize;
         private void rollUp_CheckedChanged(object sender, EventArgs e)
         {
+            fontSize = stopWatchLabel.Font;
             rollUp.CheckState = CheckState.Unchecked;
             unwrap.CheckState = CheckState.Unchecked;
-            MinimumSize = new Size(234, 42);
-            MaximumSize = new Size(234, 42);
-            Size = new Size(234, 42);
+            stopWatchLabel.Font = new Font(stopWatchLabel.Font.FontFamily, 21);
+            MinimumSize = new Size(183, 32);
+            MaximumSize = new Size(183, 32);
+            Size = new Size(183, 32);
             FormBorderStyle = FormBorderStyle.None;
             unwrap.Visible = true;
         }
@@ -662,6 +665,8 @@ namespace timerActive
         {
             rollUp.CheckState = CheckState.Unchecked;
             unwrap.CheckState = CheckState.Unchecked;
+            stopWatchLabel.Font = fontSize;
+            stopWatchLabel.Location = new Point(0, 0);
             MinimumSize = new Size(250, 425);
             MaximumSize = new Size(250, 425);
             Size = new Size(250, 425);
