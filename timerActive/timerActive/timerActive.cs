@@ -647,7 +647,9 @@ namespace timerActive
             }
         }
 
+        //для сворачивания/разворачивания формы
         Font fontSize;
+        bool minimise = false;
         private void rollUp_CheckedChanged(object sender, EventArgs e)
         {
             fontSize = stopWatchLabel.Font;
@@ -658,9 +660,9 @@ namespace timerActive
             MaximumSize = new Size(183, 32);
             Size = new Size(183, 32);
             FormBorderStyle = FormBorderStyle.None;
+            minimise = true;
             unwrap.Visible = true;
         }
-
         private void unwrap_CheckedChanged(object sender, EventArgs e)
         {
             rollUp.CheckState = CheckState.Unchecked;
@@ -671,7 +673,37 @@ namespace timerActive
             MaximumSize = new Size(250, 425);
             Size = new Size(250, 425);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            minimise = false;
             unwrap.Visible = false;
+        }
+
+        //для пертаскивания формы за верхний таймер
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+        private void stopWatchLabel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (minimise == true)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    dragging = true;
+                    dragCursorPoint = Cursor.Position;
+                    dragFormPoint = Location;
+                }
+            }
+        }
+        private void stopWatchLabel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                Location = Point.Add(dragFormPoint, new Size(dif));
+            }
+        }
+        private void stopWatchLabel_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
         }
     }
 }

@@ -102,6 +102,9 @@
             this.stopWatchLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.stopWatchLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.stopWatchLabel.Name = "stopWatchLabel";
+            this.stopWatchLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.stopWatchLabel_MouseDown);
+            this.stopWatchLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.stopWatchLabel_MouseMove);
+            this.stopWatchLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.stopWatchLabel_MouseUp);
             // 
             // mouseActive
             // 
