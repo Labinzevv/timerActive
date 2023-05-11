@@ -17,7 +17,7 @@ namespace timerActive
         //static extern IntPtr GetForegroundWindow();
         //[DllImport("user32.dll")]
         //static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
+ 
         //для создания прямоугольной области
         [DllImport("user32.dll")]
         private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
@@ -87,6 +87,7 @@ namespace timerActive
             soundReminder = new SoundPlayer("din.wav");
             time.Text = "";
 
+            //для последовательности процессов
             if (sequenceProcesses == false)
             {
                 addProcess.Enabled = false;
@@ -571,7 +572,7 @@ namespace timerActive
         //добавляет время напоминания
         private void addReminder_Click(object sender, EventArgs e)
         {
-            if (reminderMinutes.Value > 0)
+            if (reminderMinutes.Value > 0 || reminderHours.Value > 0)
             {
                 if (reminderHours.Value < 10)
                 {
@@ -635,6 +636,7 @@ namespace timerActive
             }
         }
 
+        //поверх всех окон
         private void alwaysOnTop_CheckedChanged(object sender, EventArgs e)
         {
             if (alwaysOnTop.CheckState == CheckState.Checked)
