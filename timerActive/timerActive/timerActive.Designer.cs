@@ -39,6 +39,7 @@
             this.totalTime = new System.Windows.Forms.Label();
             this.inputProcessName = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.CopyProcess = new System.Windows.Forms.Button();
             this.changeReminder = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.reminderHours = new System.Windows.Forms.NumericUpDown();
@@ -134,6 +135,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.CopyProcess);
             this.panel1.Controls.Add(this.changeReminder);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.reminderHours);
@@ -148,6 +150,13 @@
             this.panel1.Controls.Add(this.addProcess);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // CopyProcess
+            // 
+            resources.ApplyResources(this.CopyProcess, "CopyProcess");
+            this.CopyProcess.Name = "CopyProcess";
+            this.CopyProcess.UseVisualStyleBackColor = true;
+            this.CopyProcess.Click += new System.EventHandler(this.CopyProcess_Click);
             // 
             // changeReminder
             // 
@@ -442,6 +451,7 @@
         private System.Windows.Forms.CheckBox alwaysOnTop;
         private System.Windows.Forms.CheckBox rollUp;
         private System.Windows.Forms.CheckBox unwrap;
+        private System.Windows.Forms.Button CopyProcess;
     }
 }
 

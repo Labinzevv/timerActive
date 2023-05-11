@@ -80,6 +80,8 @@ namespace timerActive
         //для звука напоминания
         SoundPlayer soundReminder;
 
+        bool copyBool = false;
+
         public TimerActive()
         {
             InitializeComponent();
@@ -92,6 +94,7 @@ namespace timerActive
             {
                 addProcess.Enabled = false;
                 inputProcessName.Enabled = false;
+                CopyProcess.Enabled = false;
             }
 
             //подписка на закрытие приложения
@@ -116,6 +119,7 @@ namespace timerActive
             LoadDataFromFile();
             addProcess.Enabled = false;
             inputProcessName.Enabled = false;
+            CopyProcess.Enabled = false;
         }
         private void inputProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -123,6 +127,7 @@ namespace timerActive
             inputProjectName.Enabled = false;
             addProcess.Enabled = true;
             inputProcessName.Enabled = true;
+            CopyProcess.Enabled = true;
         }
         //загрузка данных для таймера
         private void LoadDataFromFile()
@@ -256,6 +261,17 @@ namespace timerActive
                 {
                     GetTotalTimeMethod();
                     soundReminder.Play();
+                }
+            }
+
+            //для копирования текста процесса 
+            //(если меняется имя .exe при сборке, нужно изменить "timerActiveV1.25" на имя .exe)
+            if (copyBool == true)
+            {
+                if (activeProcess.Text != "" && activeProcess.Text != "timerActiveV1.25")
+                {
+                    inputProcessName.Text = activeProcess.Text;
+                    copyBool = false;
                 }
             }
         }
@@ -461,6 +477,7 @@ namespace timerActive
                 {
                     inputProcessName.Enabled = false;
                     addProcess.Enabled = false;
+                    CopyProcess.Enabled = false;
                 }
                 inputNameProcces = inputProcessName.Text;
 
@@ -523,6 +540,7 @@ namespace timerActive
 
                 addProcess.Enabled = true;
                 inputProcessName.Enabled = true;
+                CopyProcess.Enabled = true;
 
                 SaveComboBoxValues();
             }
@@ -706,6 +724,12 @@ namespace timerActive
         private void stopWatchLabel_MouseUp(object sender, MouseEventArgs e)
         {
             dragging = false;
+        }
+
+        //для копирования текста процесса
+        private void CopyProcess_Click(object sender, EventArgs e)
+        {
+            copyBool = true;
         }
     }
 }
