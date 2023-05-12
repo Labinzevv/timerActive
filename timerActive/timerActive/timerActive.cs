@@ -96,6 +96,7 @@ namespace timerActive
                 inputProcessName.Enabled = false;
                 CopyProcess.Enabled = false;
                 openProjectFolder.Enabled = false;
+                changeProject.Enabled = false;
             }
 
             //подписка на закрытие приложения
@@ -121,6 +122,7 @@ namespace timerActive
             addProcess.Enabled = false;
             inputProcessName.Enabled = false;
             CopyProcess.Enabled = false;
+            changeProject.Enabled = true;
         }
         private void inputProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -130,6 +132,7 @@ namespace timerActive
             inputProcessName.Enabled = true;
             CopyProcess.Enabled = true;
             openProjectFolder.Enabled = true;
+            changeProject.Enabled = false;
         }
         //загрузка данных для таймера
         private void LoadDataFromFile()
@@ -487,6 +490,7 @@ namespace timerActive
                     inputProcessName.Enabled = false;
                     addProcess.Enabled = false;
                     CopyProcess.Enabled = false;
+                    changeProject.Enabled = true;
                 }
                 inputNameProcces = inputProcessName.Text;
 
@@ -526,6 +530,7 @@ namespace timerActive
         //добавляет папку для проекта
         private void addProject_Click(object sender, EventArgs e)
         {
+            changeProject.Enabled = false;
             if (inputProjectName.Text != "")
             {
                 if (!File.Exists("inputProjectNameCollection.txt"))
@@ -546,7 +551,6 @@ namespace timerActive
                 }
                 addProject.Enabled = false;
                 inputProjectName.Enabled = false;
-
                 addProcess.Enabled = true;
                 inputProcessName.Enabled = true;
                 CopyProcess.Enabled = true;
@@ -566,6 +570,7 @@ namespace timerActive
             {
                 inputProcessName.Enabled = false;
                 addProcess.Enabled = false;
+                CopyProcess.Enabled = false;
             }
             SaveElapsedTime();
             stopwatch.Reset();

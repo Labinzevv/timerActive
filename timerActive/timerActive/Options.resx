@@ -168,7 +168,17 @@
 услышите звуковой сигнал,
 и прошедшее время будет добавлено
 к общему времени.
-
+Чтобы скопировать имя процесса
+приложения, которое вы хотите
+отследить, нажмите кнопку "Copy", 
+а затем кликните по окну приложения, 
+которое вы хотите отследить. (Поле для 
+ввода имени процесса заполнится 
+автоматически).
+Кнопка "Open" открывает папку с вашим
+проектом.
+Кнопка "Open app folder" открывает
+папку с приложением.
 
 ShivaMultiHand Labinzevv ©
 </value>
@@ -212,10 +222,19 @@ confirm with the "Add reminder" button.
 When the reminder timer expires, you will
 hear a beep, and the elapsed time will
 be added to the total time.
+To copy the process name
+of the application that you want
+to track, click the "Copy" button,
+and then click on the window of the
+application that you want to track.
+(The field for entering the process 
+name will be filled in automatically).
+The "Open" button opens the folder
+with your project.
+The "Open app folder" button opens
+the application folder.
 
-ShivaMultiHand Labinzevv ©
-
-</value>
+ShivaMultiHand Labinzevv ©</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

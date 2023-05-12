@@ -53,7 +53,7 @@
             this.ruText.AutoSize = true;
             this.ruText.Location = new System.Drawing.Point(-1, 1);
             this.ruText.Name = "ruText";
-            this.ruText.Size = new System.Drawing.Size(218, 689);
+            this.ruText.Size = new System.Drawing.Size(218, 819);
             this.ruText.TabIndex = 1;
             this.ruText.Text = resources.GetString("ruText.Text");
             // 
@@ -62,7 +62,7 @@
             this.enText.AutoSize = true;
             this.enText.Location = new System.Drawing.Point(-1, 1);
             this.enText.Name = "enText";
-            this.enText.Size = new System.Drawing.Size(218, 533);
+            this.enText.Size = new System.Drawing.Size(218, 663);
             this.enText.TabIndex = 0;
             this.enText.Text = resources.GetString("enText.Text");
             // 
