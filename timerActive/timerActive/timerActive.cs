@@ -95,6 +95,7 @@ namespace timerActive
                 addProcess.Enabled = false;
                 inputProcessName.Enabled = false;
                 CopyProcess.Enabled = false;
+                openProjectFolder.Enabled = false;
             }
 
             //подписка на закрытие приложения
@@ -128,6 +129,7 @@ namespace timerActive
             addProcess.Enabled = true;
             inputProcessName.Enabled = true;
             CopyProcess.Enabled = true;
+            openProjectFolder.Enabled = true;
         }
         //загрузка данных для таймера
         private void LoadDataFromFile()
@@ -275,7 +277,7 @@ namespace timerActive
             //(если меняется имя .exe при сборке, нужно изменить "timerActiveV1.25" на имя .exe)
             if (copyBool == true)
             {
-                if (activeProcess.Text != "" && activeProcess.Text != "timerActiveV1.25")
+                if (activeProcess.Text != "" && activeProcess.Text != "timerActiveV1.26")
                 {
                     inputProcessName.Text = activeProcess.Text;
                     copyBool = false;
@@ -548,6 +550,7 @@ namespace timerActive
                 addProcess.Enabled = true;
                 inputProcessName.Enabled = true;
                 CopyProcess.Enabled = true;
+                openProjectFolder.Enabled = true;
 
                 SaveComboBoxValues();
             }
@@ -737,6 +740,24 @@ namespace timerActive
         private void CopyProcess_Click(object sender, EventArgs e)
         {
             copyBool = true;
+        }
+
+        private void openAppFolder_Click(object sender, EventArgs e)
+        {
+            string pathApp = Application.StartupPath;
+            Process.Start("explorer.exe", pathApp);
+        }
+
+        private void openProjectFolder_Click(object sender, EventArgs e)
+        {
+            if (inputProjectName.Text != "")
+            {
+                string pathApp = Application.StartupPath;
+                string projectName = inputProjectName.Text;
+                string pathProject = Path.Combine(pathApp, projectName);
+
+                Process.Start("explorer.exe", pathProject);
+            }
         }
     }
 }

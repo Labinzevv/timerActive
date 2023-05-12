@@ -174,7 +174,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;reset.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="stopWatchLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -204,7 +204,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;stopWatchLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="mouseActive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -264,7 +264,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;globalTimer.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="totalTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -294,13 +294,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;totalTime.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="inputProcessName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 48</value>
+    <value>128, 48</value>
   </data>
   <data name="inputProcessName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 21</value>
+    <value>94, 21</value>
   </data>
   <data name="inputProcessName.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -315,7 +315,19 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;inputProcessName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Name" xml:space="preserve">
+    <value>openProjectFolder</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;CopyProcess.Name" xml:space="preserve">
     <value>CopyProcess</value>
@@ -327,7 +339,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;CopyProcess.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;changeReminder.Name" xml:space="preserve">
     <value>changeReminder</value>
@@ -339,7 +351,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;changeReminder.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -351,7 +363,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;reminderHours.Name" xml:space="preserve">
     <value>reminderHours</value>
@@ -363,7 +375,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;reminderHours.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -375,7 +387,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;reminderMinutes.Name" xml:space="preserve">
     <value>reminderMinutes</value>
@@ -387,7 +399,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;reminderMinutes.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;addReminder.Name" xml:space="preserve">
     <value>addReminder</value>
@@ -399,7 +411,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addReminder.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;changeProject.Name" xml:space="preserve">
     <value>changeProject</value>
@@ -411,7 +423,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;changeProject.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;addNewProcess.Name" xml:space="preserve">
     <value>addNewProcess</value>
@@ -423,7 +435,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addNewProcess.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;addProject.Name" xml:space="preserve">
     <value>addProject</value>
@@ -435,7 +447,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addProject.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;inputProjectName.Name" xml:space="preserve">
     <value>inputProjectName</value>
@@ -447,7 +459,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;inputProjectName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;addProcess.Name" xml:space="preserve">
     <value>addProcess</value>
@@ -459,7 +471,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addProcess.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 105</value>
@@ -480,13 +492,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="CopyProcess.Location" type="System.Drawing.Point, System.Drawing">
     <value>86, 47</value>
   </data>
   <data name="CopyProcess.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 23</value>
+    <value>41, 23</value>
   </data>
   <data name="CopyProcess.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -504,7 +516,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;CopyProcess.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="changeReminder.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 70</value>
@@ -531,7 +543,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;changeReminder.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -565,7 +577,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="reminderHours.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 71</value>
@@ -586,7 +598,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;reminderHours.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -616,7 +628,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="reminderMinutes.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 71</value>
@@ -637,7 +649,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;reminderMinutes.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="addReminder.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 70</value>
@@ -661,7 +673,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addReminder.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="changeProject.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 1</value>
@@ -685,7 +697,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;changeProject.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="addNewProcess.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 1</value>
@@ -709,7 +721,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addNewProcess.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="addProject.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 24</value>
@@ -733,13 +745,13 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addProject.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="inputProjectName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 25</value>
+    <value>128, 25</value>
   </data>
   <data name="inputProjectName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 21</value>
+    <value>94, 21</value>
   </data>
   <data name="inputProjectName.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -754,7 +766,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;inputProjectName.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="addProcess.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -781,13 +793,13 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;addProcess.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="GetTotalTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 291</value>
   </data>
   <data name="GetTotalTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 23</value>
+    <value>117, 23</value>
   </data>
   <data name="GetTotalTime.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -805,7 +817,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;GetTotalTime.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="activeProcess.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -958,7 +970,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1069,7 +1081,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="rollUp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1225,7 +1237,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="activeWindowMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1357,7 +1369,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;options.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1387,7 +1399,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="unwrap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1417,6 +1429,54 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;unwrap.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="openAppFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 291</value>
+  </data>
+  <data name="openAppFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 23</value>
+  </data>
+  <data name="openAppFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="openAppFolder.Text" xml:space="preserve">
+    <value>Open app folder</value>
+  </data>
+  <data name="&gt;&gt;openAppFolder.Name" xml:space="preserve">
+    <value>openAppFolder</value>
+  </data>
+  <data name="&gt;&gt;openAppFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openAppFolder.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;openAppFolder.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="openProjectFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 24</value>
+  </data>
+  <data name="openProjectFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 23</value>
+  </data>
+  <data name="openProjectFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="openProjectFolder.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Name" xml:space="preserve">
+    <value>openProjectFolder</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;openProjectFolder.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -1691,7 +1751,7 @@
     <value>250, 425</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Timer active v1.25</value>
+    <value>Timer active v1.26</value>
   </data>
   <data name="&gt;&gt;timer.Name" xml:space="preserve">
     <value>timer</value>

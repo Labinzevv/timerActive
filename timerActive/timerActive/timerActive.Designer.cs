@@ -71,6 +71,8 @@
             this.options = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.unwrap = new System.Windows.Forms.CheckBox();
+            this.openAppFolder = new System.Windows.Forms.Button();
+            this.openProjectFolder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -135,6 +137,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.openProjectFolder);
             this.panel1.Controls.Add(this.CopyProcess);
             this.panel1.Controls.Add(this.changeReminder);
             this.panel1.Controls.Add(this.label6);
@@ -376,10 +379,25 @@
             this.unwrap.UseVisualStyleBackColor = true;
             this.unwrap.CheckedChanged += new System.EventHandler(this.unwrap_CheckedChanged);
             // 
+            // openAppFolder
+            // 
+            resources.ApplyResources(this.openAppFolder, "openAppFolder");
+            this.openAppFolder.Name = "openAppFolder";
+            this.openAppFolder.UseVisualStyleBackColor = true;
+            this.openAppFolder.Click += new System.EventHandler(this.openAppFolder_Click);
+            // 
+            // openProjectFolder
+            // 
+            resources.ApplyResources(this.openProjectFolder, "openProjectFolder");
+            this.openProjectFolder.Name = "openProjectFolder";
+            this.openProjectFolder.UseVisualStyleBackColor = true;
+            this.openProjectFolder.Click += new System.EventHandler(this.openProjectFolder_Click);
+            // 
             // TimerActive
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.openAppFolder);
             this.Controls.Add(this.unwrap);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.options);
@@ -452,6 +470,8 @@
         private System.Windows.Forms.CheckBox rollUp;
         private System.Windows.Forms.CheckBox unwrap;
         private System.Windows.Forms.Button CopyProcess;
+        private System.Windows.Forms.Button openAppFolder;
+        private System.Windows.Forms.Button openProjectFolder;
     }
 }
 
