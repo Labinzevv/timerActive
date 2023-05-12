@@ -262,6 +262,13 @@ namespace timerActive
                     GetTotalTimeMethod();
                     soundReminder.Play();
                 }
+
+                //сбрасывает верхний таймер и добавляет время к глобальному таймеру
+                //если значение верхнего таймера = 23:59:59
+                if (timeFix == "23:59:59")
+                {
+                    GetTotalTimeMethod();
+                }
             }
 
             //для копирования текста процесса 
