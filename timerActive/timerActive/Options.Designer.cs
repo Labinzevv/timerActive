@@ -34,6 +34,8 @@
             this.enText = new System.Windows.Forms.Label();
             this.language = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.back = new System.Windows.Forms.Button();
+            this.minimize = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,15 +90,37 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Language:";
             // 
+            // back
+            // 
+            this.back.Location = new System.Drawing.Point(25, -1);
+            this.back.Name = "back";
+            this.back.Size = new System.Drawing.Size(43, 23);
+            this.back.TabIndex = 5;
+            this.back.Text = "Back";
+            this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
+            // 
+            // minimize
+            // 
+            this.minimize.Location = new System.Drawing.Point(-1, -1);
+            this.minimize.Name = "minimize";
+            this.minimize.Size = new System.Drawing.Size(27, 23);
+            this.minimize.TabIndex = 6;
+            this.minimize.Text = "__";
+            this.minimize.UseVisualStyleBackColor = true;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(234, 386);
+            this.Controls.Add(this.minimize);
+            this.Controls.Add(this.back);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.language);
             this.Controls.Add(this.panel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(250, 425);
             this.MinimumSize = new System.Drawing.Size(250, 425);
@@ -117,5 +141,7 @@
         private System.Windows.Forms.ComboBox language;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label ruText;
+        private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Button minimize;
     }
 }

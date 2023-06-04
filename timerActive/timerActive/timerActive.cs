@@ -707,7 +707,7 @@ namespace timerActive
             MinimumSize = new Size(250, 425);
             MaximumSize = new Size(250, 425);
             Size = new Size(250, 425);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             minimise = false;
             unwrap.Visible = false;
         }
@@ -763,6 +763,11 @@ namespace timerActive
 
                 Process.Start("explorer.exe", pathProject);
             }
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

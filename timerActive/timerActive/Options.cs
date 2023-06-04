@@ -19,7 +19,7 @@ namespace timerActive
         public Options()
         {
             InitializeComponent();
-            language.SelectedItem = "En";
+            language.SelectedItem = en;
         }
       
         private void Options_Load(object sender, EventArgs e)
@@ -49,6 +49,17 @@ namespace timerActive
                 enText.Visible = false;
                 ruText.Visible = true;
             }
+        }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            Close();
+            Options_FormClosing(sender, new FormClosingEventArgs(CloseReason.UserClosing, false));
+        }
+
+        private void minimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

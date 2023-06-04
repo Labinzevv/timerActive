@@ -39,6 +39,7 @@
             this.totalTime = new System.Windows.Forms.Label();
             this.inputProcessName = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.openProjectFolder = new System.Windows.Forms.Button();
             this.CopyProcess = new System.Windows.Forms.Button();
             this.changeReminder = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,7 +73,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.unwrap = new System.Windows.Forms.CheckBox();
             this.openAppFolder = new System.Windows.Forms.Button();
-            this.openProjectFolder = new System.Windows.Forms.Button();
+            this.minimize = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reminderHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reminderMinutes)).BeginInit();
@@ -153,6 +154,13 @@
             this.panel1.Controls.Add(this.addProcess);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // openProjectFolder
+            // 
+            resources.ApplyResources(this.openProjectFolder, "openProjectFolder");
+            this.openProjectFolder.Name = "openProjectFolder";
+            this.openProjectFolder.UseVisualStyleBackColor = true;
+            this.openProjectFolder.Click += new System.EventHandler(this.openProjectFolder_Click);
             // 
             // CopyProcess
             // 
@@ -323,6 +331,7 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.minimize);
             this.panel4.Controls.Add(this.activeWindowMode);
             this.panel4.Controls.Add(this.activeMouseMode);
             this.panel4.Controls.Add(this.activeTimerCheck);
@@ -386,12 +395,12 @@
             this.openAppFolder.UseVisualStyleBackColor = true;
             this.openAppFolder.Click += new System.EventHandler(this.openAppFolder_Click);
             // 
-            // openProjectFolder
+            // minimize
             // 
-            resources.ApplyResources(this.openProjectFolder, "openProjectFolder");
-            this.openProjectFolder.Name = "openProjectFolder";
-            this.openProjectFolder.UseVisualStyleBackColor = true;
-            this.openProjectFolder.Click += new System.EventHandler(this.openProjectFolder_Click);
+            resources.ApplyResources(this.minimize, "minimize");
+            this.minimize.Name = "minimize";
+            this.minimize.UseVisualStyleBackColor = true;
+            this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
             // TimerActive
             // 
@@ -410,7 +419,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TimerActive";
             this.Load += new System.EventHandler(this.timerActive_Load);
             this.panel1.ResumeLayout(false);
@@ -472,6 +481,7 @@
         private System.Windows.Forms.Button CopyProcess;
         private System.Windows.Forms.Button openAppFolder;
         private System.Windows.Forms.Button openProjectFolder;
+        private System.Windows.Forms.Button minimize;
     }
 }
 
